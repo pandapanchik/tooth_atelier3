@@ -25,4 +25,4 @@ Iliq, sokin, g'amxo'r. "Made with love" shiori. Ovoz shoshilmaydi, tushuntiradi,
 4. Hamma uchun: bolalar, ayollar va kattalar o'zini ko'rsin; uch tilda bir xil sifat.
 
 ## Accessibility & Inclusion
-WCAG 2.1 AA: matn kontrasti kamida 4.5:1, katta sarlavhalar 3:1. `prefers-reduced-motion` hurmat qilinadi (allaqachon amalga oshirilgan). Rus tilida kursiv yo'q shrift uchun urg'u faqat rang bilan beriladi, shuning uchun urg'u rangi fondan aniq ajralib turishi shart.
+WCAG 2.1 AA: matn kontrasti kamida 4.5:1, katta sarlavhalar 3:1. `prefers-reduced-motion` hurmat qilinadi (allaqachon amalga oshirilgan). Sarlavhalardagi urg'u kursiv va rang bilan beriladi (rus tilida kursivni Literata beradi), urg'u rangi fondan aniq ajralib turishi shart.

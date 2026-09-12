@@ -6,16 +6,22 @@
   <title>Tooth Atelier · Stomatologiya ateliesi</title>
   <meta name="description" content="Tooth Atelier: tabassumingizni mehr bilan yaratamiz. Implantatsiya, estetik stomatologiya, ortodontiya, bolalar va ayollar uchun maxsus dasturlar.">
   <meta name="theme-color" content="#d9e3ee">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico?v=2" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png?v=2">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Jost:wght@300..600&family=Prata&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <!-- Shriftlar: Gambetta (sarlavhalar) va Switzer (matn) Fontshare'dan. Ularda kirill harflari yo'q,
+       shuning uchun rus tilida brauzer shunga yaqin Literata va Onest'ni oladi -->
+  <link href="https://api.fontshare.com/v2/css?f[]=gambetta@400,401,500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;1,7..72,400&family=Onest:wght@300..500&display=swap" rel="stylesheet">
   <!-- ?v=... : fayllar yangilanganda brauzer eski nusxani ko'rsatmasligi uchun raqamni oshiring -->
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=15">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -132,7 +138,7 @@
 
         <figure class="hero__visual load load--photo" style="--d:1">
           <svg class="hero__photo" viewBox="0 0 600 720" role="img" aria-labelledby="hero-photo-alt">
-            <title id="hero-photo-alt" data-i18n="hero.photoAlt">Jingalak sochli ayol keng va samimiy jilmaymoqda, oppoq sog‘lom tishlari ko‘rinib turibdi</title>
+            <title id="hero-photo-alt" data-i18n="hero.photoAlt">Yaqin plandagi samimiy tabassum: oppoq, tekis tishlar va pushti lablar</title>
             <defs>
               <clipPath id="heroClip">
                 <path d="M96 38C196-4 326 34 432 22c108-12 162 64 156 176-6 104-50 162-26 272 26 120-46 226-166 234-110 8-150-44-250-28C44 692 2 610 12 500c9-100 58-140 36-250C26 140 24 72 96 38Z"/>
@@ -143,7 +149,7 @@
               </linearGradient>
             </defs>
             <g clip-path="url(#heroClip)">
-              <image href="https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?auto=format&amp;fit=crop&amp;w=1100&amp;h=1320&amp;q=80" width="600" height="720" preserveAspectRatio="xMidYMid slice"/>
+              <image href="img/hero-smile.jpg" width="600" height="720" preserveAspectRatio="xMidYMid slice"/>
               <rect width="600" height="720" fill="url(#heroShade)"/>
             </g>
             <path class="hero__frame" d="M96 38C196-4 326 34 432 22c108-12 162 64 156 176-6 104-50 162-26 272 26 120-46 226-166 234-110 8-150-44-250-28C44 692 2 610 12 500c9-100 58-140 36-250C26 140 24 72 96 38Z"/>
@@ -168,161 +174,340 @@
     </section>
 
     <!-- ============ MUOLAJALAR ============ -->
-    <section class="treat" id="muolajalar" aria-labelledby="treat-title">
+    <section class="treat" id="muolajalar">
       <div class="bokeh bokeh--soft" data-bokeh="12" aria-hidden="true"></div>
       <div class="container">
-        <header class="section-head">
-          <div>
-            <p class="eyebrow" data-reveal data-i18n="treat.eyebrow">Muolajalar</p>
-            <h2 class="h2" id="treat-title" data-reveal style="--i:1" data-i18n="treat.title">Sog‘lom tabassum uchun kerakli hamma narsa, <em>bir joyda</em></h2>
-          </div>
-          <p class="section-head__lead" data-reveal style="--i:2" data-i18n="treat.lead">Har bir muolaja zamonaviy uskunalarda va sizga qulay sur’atda o‘tadi. Qaysi biri kerakligini bilmasangiz, birinchi tashrifda birga aniqlaymiz.</p>
-        </header>
-
-        <div class="t-grid">
-          <article class="t-feature" data-reveal>
-            <img src="https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=1100&amp;h=1100&amp;q=75"
-                 srcset="https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=700&amp;h=700&amp;q=75 700w,
-                         https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=1100&amp;h=1100&amp;q=75 1100w"
-                 sizes="(max-width: 1024px) 100vw, 50vw"
-                 width="1100" height="1100" loading="lazy"
-                 alt="Shifokor jilmayib turgan bemorning tishlarini ko‘zgucha bilan ehtiyotkorlik bilan tekshirmoqda"
-                 data-i18n-attr="alt:img.feature">
-            <div class="glass t-feature__panel">
-              <p class="t-feature__kicker" data-i18n="feature.kicker">Birinchi tashrif</p>
-              <h3 class="t-feature__title" data-i18n="feature.title">Tekshiruv, samimiy suhbat va aniq davolash rejasi</h3>
-              <a class="btn btn--primary btn--sm" href="https://t.me/tooth_atelier" target="_blank" rel="noopener">
-                <span data-i18n="feature.cta">Yozilish</span> <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="t-card glass" data-reveal style="--i:1">
-            <span class="t-card__num">01</span>
-            <h3 class="t-card__title" data-i18n="t1.title">Implantatsiya</h3>
-            <p class="t-card__text" data-i18n="t1.text">Yo‘qotilgan tish o‘rniga mustahkam va tabiiy ko‘rinishdagi yangi tish. Uzoq yillar xizmat qiladi.</p>
-          </article>
-
-          <article class="t-card glass" data-reveal style="--i:2">
-            <span class="t-card__num">02</span>
-            <h3 class="t-card__title" data-i18n="t2.title">Tishlarni oqartirish</h3>
-            <p class="t-card__text" data-i18n="t2.text">Emalga zarar yetkazmasdan, tabiiy va yorqin rang.</p>
-          </article>
-
-          <article class="t-card t-card--wide glass" data-reveal style="--i:3">
-            <span class="t-card__num">03</span>
-            <h3 class="t-card__title" data-i18n="t3.title">Estetik restavratsiya va vinirlar</h3>
-            <p class="t-card__text" data-i18n="t3.text">Tabassum shakli va rangini yuzingiz, xarakteringiz va istaklaringizga moslab, qo‘lda ehtiyotkorlik bilan tiklaymiz.</p>
-          </article>
-
-          <article class="t-card glass" data-reveal style="--i:1">
-            <span class="t-card__num">04</span>
-            <h3 class="t-card__title" data-i18n="t4.title">Ortodontiya</h3>
-            <p class="t-card__text" data-i18n="t4.text">Breketlar va shaffof kapalar yordamida tekis tishlar, istalgan yoshda.</p>
-          </article>
-
-          <article class="t-card t-card--wide glass" data-reveal style="--i:2">
-            <span class="t-card__num">05</span>
-            <h3 class="t-card__title" data-i18n="t5.title">Og‘riqsiz davolash</h3>
-            <p class="t-card__text" data-i18n="t5.text">Kariyes va ildiz kanallarini zamonaviy anesteziya ostida davolaymiz. Siz faqat xotirjamlikni his qilasiz.</p>
-          </article>
-
-          <article class="t-card glass" data-reveal style="--i:3">
-            <span class="t-card__num">06</span>
-            <h3 class="t-card__title" data-i18n="t6.title">Professional gigiyena</h3>
-            <p class="t-card__text" data-i18n="t6.text">Tish toshi va karashlardan tozalash, milklar sog‘lig‘i uchun muntazam parvarish.</p>
-          </article>
-        </div>
-
-        <!-- To'liq xizmatlar ro'yxati: 4 yo'nalish, tablar bilan -->
-        <div class="svc" id="xizmatlar" data-reveal>
-          <header class="svc__head">
+        <!-- ============ SHIFOKORLAR ============ -->
+        <div class="team" id="shifokorlar">
+          <header class="section-head">
             <div>
-              <p class="eyebrow" data-i18n="svc.eyebrow">To‘liq ro‘yxat</p>
-              <h3 class="svc__title" data-i18n="svc.title">Barcha <em>xizmatlarimiz</em></h3>
+              <p class="eyebrow" data-reveal data-i18n="team.eyebrow">Jamoamiz</p>
+              <h2 class="h2" id="team-title" data-reveal style="--i:1" data-i18n="team.title">Tabassumingiz <em>ishonchli qo‘llarda</em></h2>
             </div>
-            <div class="svc-tabs" role="tablist" aria-label="Xizmat yo‘nalishlari" data-i18n-attr="aria-label:svc.tabs">
-              <button class="svc-tab" type="button" role="tab" id="svc-tab-1" aria-controls="svc-panel-1" aria-selected="true" tabindex="0"><span data-i18n="svc.c1">Jarrohlik</span><span class="svc-tab__count">7</span></button>
-              <button class="svc-tab" type="button" role="tab" id="svc-tab-2" aria-controls="svc-panel-2" aria-selected="false" tabindex="-1"><span data-i18n="svc.c2">Terapiya</span><span class="svc-tab__count">5</span></button>
-              <button class="svc-tab" type="button" role="tab" id="svc-tab-3" aria-controls="svc-panel-3" aria-selected="false" tabindex="-1"><span data-i18n="svc.c3">Ortodontiya</span><span class="svc-tab__count">7</span></button>
-              <button class="svc-tab" type="button" role="tab" id="svc-tab-4" aria-controls="svc-panel-4" aria-selected="false" tabindex="-1"><span data-i18n="svc.c4">Ortopediya</span><span class="svc-tab__count">4</span></button>
-            </div>
+            <p class="section-head__lead" data-reveal style="--i:2" data-i18n="team.lead">Olti nafar shifokor: terapiyadan jarrohlik va ortodontiyagacha. Qabulda sizni shoshirmay tinglashadi va har bir qadamni tushuntirishadi.</p>
           </header>
 
-          <div class="svc__stage glass">
-            <div class="svc__panels">
-              <section class="svc-panel is-active" role="tabpanel" id="svc-panel-1" aria-labelledby="svc-tab-1" tabindex="0">
-                <div class="svc-panel__intro svc-anim" style="--i:0">
-                  <p class="svc-panel__kicker">01 / 04</p>
-                  <h4 class="svc-panel__name" data-i18n="svc.c1">Jarrohlik</h4>
-                  <p class="svc-panel__desc" data-i18n="svc.c1desc">Maslahatdan implantatsiyagacha: aniq, ehtiyotkor va og‘riqsiz.</p>
+          <!-- Har bir portret: arka oynasi pastdan ochiladi, ramka chiziladi, ism qatorma-qator ko'tariladi -->
+          <ol class="team__list" role="list" data-team>
+            <li class="doc" style="--i:0">
+              <figure class="doc__card" data-inview>
+                <div class="doc__frame">
+                  <svg class="doc__outline" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 150A149 149 0 0 1 299 150V379Q299 399 279 399H21Q1 399 1 379Z"/></svg>
+                  <div class="doc__photo">
+                    <img src="img/doctors/shahzod-raxmatxojaev-900.webp" srcset="img/doctors/shahzod-raxmatxojaev-560.webp 560w, img/doctors/shahzod-raxmatxojaev-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
+                  </div>
+                  <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
                 </div>
-                <ol class="svc-list">
-                  <li class="svc-item svc-anim" style="--i:1"><span class="svc-item__num">01</span><span class="svc-item__name" data-i18n="svc.1.1">Konsultatsiya <span class="svc-item__note">shifokor maslahati</span></span></li>
-                  <li class="svc-item svc-anim" style="--i:2"><span class="svc-item__num">02</span><span class="svc-item__name" data-i18n="svc.1.2">Oddiy tish olish</span></li>
-                  <li class="svc-item svc-anim" style="--i:3"><span class="svc-item__num">03</span><span class="svc-item__name" data-i18n="svc.1.3">Murakkab tish olish</span></li>
-                  <li class="svc-item svc-anim" style="--i:4"><span class="svc-item__num">04</span><span class="svc-item__name" data-i18n="svc.1.4">Kesish va drenaj qilish</span></li>
-                  <li class="svc-item svc-anim" style="--i:5"><span class="svc-item__num">05</span><span class="svc-item__name" data-i18n="svc.1.5">Sinus-lifting</span></li>
-                  <li class="svc-item svc-anim" style="--i:6"><span class="svc-item__num">06</span><span class="svc-item__name" data-i18n="svc.1.6">Implant o‘rnatish</span></li>
-                  <li class="svc-item svc-anim" style="--i:7"><span class="svc-item__num">07</span><span class="svc-item__name" data-i18n="svc.1.7">Implant uchun koronka</span></li>
-                </ol>
-              </section>
-
-              <section class="svc-panel" role="tabpanel" id="svc-panel-2" aria-labelledby="svc-tab-2" tabindex="0">
-                <div class="svc-panel__intro svc-anim" style="--i:0">
-                  <p class="svc-panel__kicker">02 / 04</p>
-                  <h4 class="svc-panel__name" data-i18n="svc.c2">Terapiya</h4>
-                  <p class="svc-panel__desc" data-i18n="svc.c2desc">Tishingizni saqlab qolish uchun kerakli hamma narsa.</p>
+                <figcaption class="doc__caption">
+                  <p class="doc__meta"><span class="doc__num">01</span><span class="doc__role" data-i18n="doc.3.role">Jarroh-ortoped</span></p>
+                  <h3 class="doc__name">
+                    <span class="doc__line"><span data-i18n="doc.3.first">Shahzod</span></span>
+                    <span class="doc__line"><span data-i18n="doc.3.last">Raxmatxo‘jaev</span></span>
+                  </h3>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="doc" style="--i:1">
+              <figure class="doc__card" data-inview>
+                <div class="doc__frame">
+                  <svg class="doc__outline" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 150A149 149 0 0 1 299 150V379Q299 399 279 399H21Q1 399 1 379Z"/></svg>
+                  <div class="doc__photo">
+                    <img src="img/doctors/akrom-rixsiev-900.webp" srcset="img/doctors/akrom-rixsiev-560.webp 560w, img/doctors/akrom-rixsiev-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
+                  </div>
+                  <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
                 </div>
-                <ol class="svc-list">
-                  <li class="svc-item svc-anim" style="--i:1"><span class="svc-item__num">01</span><span class="svc-item__name" data-i18n="svc.2.1">Kariesni davolash</span></li>
-                  <li class="svc-item svc-anim" style="--i:2"><span class="svc-item__num">02</span><span class="svc-item__name" data-i18n="svc.2.2">Estetik restavratsiya <span class="svc-item__note">tishni tiklash</span></span></li>
-                  <li class="svc-item svc-anim" style="--i:3"><span class="svc-item__num">03</span><span class="svc-item__name" data-i18n="svc.2.3">Qayta davolash</span></li>
-                  <li class="svc-item svc-anim" style="--i:4"><span class="svc-item__num">04</span><span class="svc-item__name" data-i18n="svc.2.4">Ildiz kanalini davolash</span></li>
-                  <li class="svc-item svc-anim" style="--i:5"><span class="svc-item__num">05</span><span class="svc-item__name" data-i18n="svc.2.5">Tishlarni professional tozalash</span></li>
-                </ol>
-              </section>
-
-              <section class="svc-panel" role="tabpanel" id="svc-panel-3" aria-labelledby="svc-tab-3" tabindex="0">
-                <div class="svc-panel__intro svc-anim" style="--i:0">
-                  <p class="svc-panel__kicker">03 / 04</p>
-                  <h4 class="svc-panel__name" data-i18n="svc.c3">Ortodontiya</h4>
-                  <p class="svc-panel__desc" data-i18n="svc.c3desc">Birinchi tashxisdan reteynergacha: tekis tabassum sari yo‘l.</p>
+                <figcaption class="doc__caption">
+                  <p class="doc__meta"><span class="doc__num">02</span><span class="doc__role" data-i18n="doc.2.role">Jarroh-ortoped</span></p>
+                  <h3 class="doc__name">
+                    <span class="doc__line"><span data-i18n="doc.2.first">Akrom</span></span>
+                    <span class="doc__line"><span data-i18n="doc.2.last">Rixsiev</span></span>
+                  </h3>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="doc" style="--i:2">
+              <figure class="doc__card" data-inview>
+                <div class="doc__frame">
+                  <svg class="doc__outline" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 150A149 149 0 0 1 299 150V379Q299 399 279 399H21Q1 399 1 379Z"/></svg>
+                  <div class="doc__photo">
+                    <img src="img/doctors/osimxon-axrorxojaev-900.webp" srcset="img/doctors/osimxon-axrorxojaev-560.webp 560w, img/doctors/osimxon-axrorxojaev-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
+                  </div>
+                  <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
                 </div>
-                <ol class="svc-list">
-                  <li class="svc-item svc-anim" style="--i:1"><span class="svc-item__num">01</span><span class="svc-item__name" data-i18n="svc.3.1">Diagnostika <span class="svc-item__note">rasm + qolip olish</span></span></li>
-                  <li class="svc-item svc-anim" style="--i:2"><span class="svc-item__num">02</span><span class="svc-item__name" data-i18n="svc.3.2">Metall breketlar</span></li>
-                  <li class="svc-item svc-anim" style="--i:3"><span class="svc-item__num">03</span><span class="svc-item__name" data-i18n="svc.3.3">Keramika breketlari</span></li>
-                  <li class="svc-item svc-anim" style="--i:4"><span class="svc-item__num">04</span><span class="svc-item__name" data-i18n="svc.3.4">Elaynerlar</span></li>
-                  <li class="svc-item svc-anim" style="--i:5"><span class="svc-item__num">05</span><span class="svc-item__name" data-i18n="svc.3.5">Nazorat tashrifi <span class="svc-item__note">ko‘rik</span></span></li>
-                  <li class="svc-item svc-anim" style="--i:6"><span class="svc-item__num">06</span><span class="svc-item__name" data-i18n="svc.3.6">Breketlarni yechish</span></li>
-                  <li class="svc-item svc-anim" style="--i:7"><span class="svc-item__num">07</span><span class="svc-item__name" data-i18n="svc.3.7">Reteynerlar</span></li>
-                </ol>
-              </section>
-
-              <section class="svc-panel" role="tabpanel" id="svc-panel-4" aria-labelledby="svc-tab-4" tabindex="0">
-                <div class="svc-panel__intro svc-anim" style="--i:0">
-                  <p class="svc-panel__kicker">04 / 04</p>
-                  <h4 class="svc-panel__name" data-i18n="svc.c4">Ortopediya</h4>
-                  <p class="svc-panel__desc" data-i18n="svc.c4desc">Tabiiy ko‘rinishdagi koronka va vinirlar, uzoq yillarga.</p>
+                <figcaption class="doc__caption">
+                  <p class="doc__meta"><span class="doc__num">03</span><span class="doc__role" data-i18n="doc.4.role">Ortodont</span></p>
+                  <h3 class="doc__name">
+                    <span class="doc__line"><span data-i18n="doc.4.first">Osimxon</span></span>
+                    <span class="doc__line"><span data-i18n="doc.4.last">Axrorxo‘jaev</span></span>
+                  </h3>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="doc" style="--i:0">
+              <figure class="doc__card" data-inview>
+                <div class="doc__frame">
+                  <svg class="doc__outline" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 150A149 149 0 0 1 299 150V379Q299 399 279 399H21Q1 399 1 379Z"/></svg>
+                  <div class="doc__photo">
+                    <img src="img/doctors/shirin-ataxanova-900.webp" srcset="img/doctors/shirin-ataxanova-560.webp 560w, img/doctors/shirin-ataxanova-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
+                  </div>
+                  <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
                 </div>
-                <ol class="svc-list">
-                  <li class="svc-item svc-anim" style="--i:1"><span class="svc-item__num">01</span><span class="svc-item__name" data-i18n="svc.4.1">Vinirlar</span></li>
-                  <li class="svc-item svc-anim" style="--i:2"><span class="svc-item__num">02</span><span class="svc-item__name" data-i18n="svc.4.2">Implant uchun metallsiz koronka <span class="svc-item__note">sirkoniy dioksid</span></span></li>
-                  <li class="svc-item svc-anim" style="--i:3"><span class="svc-item__num">03</span><span class="svc-item__name" data-i18n="svc.4.3">Tish uchun metallsiz koronka <span class="svc-item__note">sirkoniy dioksid, e.max press</span></span></li>
-                  <li class="svc-item svc-anim" style="--i:4"><span class="svc-item__num">04</span><span class="svc-item__name" data-i18n="svc.4.4">Qattiq shikastlangan tishlar asosini tiklash <span class="svc-item__note">build-up</span></span></li>
-                </ol>
-              </section>
-            </div>
+                <figcaption class="doc__caption">
+                  <p class="doc__meta"><span class="doc__num">04</span><span class="doc__role" data-i18n="doc.5.role">Ortoped</span></p>
+                  <h3 class="doc__name">
+                    <span class="doc__line"><span data-i18n="doc.5.first">Shirin</span></span>
+                    <span class="doc__line"><span data-i18n="doc.5.last">Ataxanova</span></span>
+                  </h3>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="doc" style="--i:1">
+              <figure class="doc__card" data-inview>
+                <div class="doc__frame">
+                  <svg class="doc__outline" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 150A149 149 0 0 1 299 150V379Q299 399 279 399H21Q1 399 1 379Z"/></svg>
+                  <div class="doc__photo">
+                    <img src="img/doctors/dilshod-mirzokirov-900.webp" srcset="img/doctors/dilshod-mirzokirov-560.webp 560w, img/doctors/dilshod-mirzokirov-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
+                  </div>
+                  <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
+                </div>
+                <figcaption class="doc__caption">
+                  <p class="doc__meta"><span class="doc__num">05</span><span class="doc__role" data-i18n="doc.6.role">Terapevt-ortoped</span></p>
+                  <h3 class="doc__name">
+                    <span class="doc__line"><span data-i18n="doc.6.first">Dilshod</span></span>
+                    <span class="doc__line"><span data-i18n="doc.6.last">Mirzokirov</span></span>
+                  </h3>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="doc" style="--i:2">
+              <figure class="doc__card" data-inview>
+                <div class="doc__frame">
+                  <svg class="doc__outline" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 150A149 149 0 0 1 299 150V379Q299 399 279 399H21Q1 399 1 379Z"/></svg>
+                  <div class="doc__photo">
+                    <img src="img/doctors/burxon-nazarov-900.webp" srcset="img/doctors/burxon-nazarov-560.webp 560w, img/doctors/burxon-nazarov-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
+                  </div>
+                  <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
+                </div>
+                <figcaption class="doc__caption">
+                  <p class="doc__meta"><span class="doc__num">06</span><span class="doc__role" data-i18n="doc.1.role">Terapevt</span></p>
+                  <h3 class="doc__name">
+                    <span class="doc__line"><span data-i18n="doc.1.first">Burxon</span></span>
+                    <span class="doc__line"><span data-i18n="doc.1.last">Nazarov</span></span>
+                  </h3>
+                </figcaption>
+              </figure>
+            </li>
+          </ol>
 
-            <div class="svc__call">
-              <p data-i18n="svc.call">Narx va davolash muddatlarini telefon orqali aniqlang</p>
-              <a class="svc__phone" href="tel:+998999900006">
-                <svg aria-hidden="true"><use href="#i-phone"/></svg>+998 99 990 00 06
-              </a>
-            </div>
+          <!-- Telefonda: lentadagi o'rin -->
+          <div class="team__progress" data-team-progress aria-hidden="true">
+            <span class="team__count"><b data-team-current>01</b> / 06</span>
+            <span class="team__track"><span class="team__fill"></span></span>
+          </div>        </div>
+
+        <!-- To'liq xizmatlar ro'yxati: yo'nalish tanlanadi, kartalar yoy bo'ylab g'ildirakdek aylanadi -->
+        <div class="svc" id="xizmatlar">
+          <header class="svc__head" data-reveal>
+            <p class="svc__pill" data-i18n="svc.eyebrow">To‘liq ro‘yxat</p>
+            <h3 class="svc__title" id="svc-title" data-i18n="svc.title">Barcha <em>xizmatlarimiz</em></h3>
+          </header>
+
+          <div class="svc-tabs" role="tablist" aria-label="Xizmat yo‘nalishlari" data-i18n-attr="aria-label:svc.tabs" data-reveal style="--i:1">
+            <button class="svc-tab" type="button" role="tab" id="svc-tab-1" aria-controls="svc-panel-1" aria-selected="true" tabindex="0"><span data-i18n="svc.c1">Jarrohlik</span><span class="svc-tab__count">7</span></button>
+            <button class="svc-tab" type="button" role="tab" id="svc-tab-2" aria-controls="svc-panel-2" aria-selected="false" tabindex="-1"><span data-i18n="svc.c2">Terapiya</span><span class="svc-tab__count">5</span></button>
+            <button class="svc-tab" type="button" role="tab" id="svc-tab-3" aria-controls="svc-panel-3" aria-selected="false" tabindex="-1"><span data-i18n="svc.c3">Ortodontiya</span><span class="svc-tab__count">7</span></button>
+            <button class="svc-tab" type="button" role="tab" id="svc-tab-4" aria-controls="svc-panel-4" aria-selected="false" tabindex="-1"><span data-i18n="svc.c4">Ortopediya</span><span class="svc-tab__count">4</span></button>
           </div>
-        </div>
+
+          <div class="svc__panels" data-reveal style="--i:2">
+            <section class="svc-panel is-active" role="tabpanel" id="svc-panel-1" aria-labelledby="svc-tab-1">
+              <p class="svc-panel__desc" data-i18n="svc.c1desc">Maslahatdan implantatsiyagacha: aniq, ehtiyotkor va og‘riqsiz.</p>
+              <ol class="svc-deck" role="list">
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-1-1">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">01</span><span class="svc-card__name" id="svc-n-1-1" data-i18n="svc.1.1">Konsultatsiya <span class="svc-item__note">shifokor maslahati</span></span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-1-2">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">02</span><span class="svc-card__name" id="svc-n-1-2" data-i18n="svc.1.2">Oddiy tish olish</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-1-3">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">03</span><span class="svc-card__name" id="svc-n-1-3" data-i18n="svc.1.3">Murakkab tish olish</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-1-4">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1588776813677-77aaf5595b83?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1588776813677-77aaf5595b83?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1588776813677-77aaf5595b83?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">04</span><span class="svc-card__name" id="svc-n-1-4" data-i18n="svc.1.4">Kesish va drenaj qilish</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-1-5">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">05</span><span class="svc-card__name" id="svc-n-1-5" data-i18n="svc.1.5">Sinus-lifting</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-1-6">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">06</span><span class="svc-card__name" id="svc-n-1-6" data-i18n="svc.1.6">Implant o‘rnatish</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-1-7">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">07</span><span class="svc-card__name" id="svc-n-1-7" data-i18n="svc.1.7">Implant uchun koronka</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+              </ol>
+            </section>
+            <section class="svc-panel" role="tabpanel" id="svc-panel-2" aria-labelledby="svc-tab-2">
+              <p class="svc-panel__desc" data-i18n="svc.c2desc">Tishingizni saqlab qolish uchun kerakli hamma narsa.</p>
+              <ol class="svc-deck" role="list">
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-2-1">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">01</span><span class="svc-card__name" id="svc-n-2-1" data-i18n="svc.2.1">Kariesni davolash</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-2-2">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">02</span><span class="svc-card__name" id="svc-n-2-2" data-i18n="svc.2.2">Estetik restavratsiya <span class="svc-item__note">tishni tiklash</span></span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-2-3">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">03</span><span class="svc-card__name" id="svc-n-2-3" data-i18n="svc.2.3">Qayta davolash</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-2-4">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">04</span><span class="svc-card__name" id="svc-n-2-4" data-i18n="svc.2.4">Ildiz kanalini davolash</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-2-5">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">05</span><span class="svc-card__name" id="svc-n-2-5" data-i18n="svc.2.5">Tishlarni professional tozalash</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+              </ol>
+            </section>
+            <section class="svc-panel" role="tabpanel" id="svc-panel-3" aria-labelledby="svc-tab-3">
+              <p class="svc-panel__desc" data-i18n="svc.c3desc">Birinchi tashxisdan reteynergacha: tekis tabassum sari yo‘l.</p>
+              <ol class="svc-deck" role="list">
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-3-1">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">01</span><span class="svc-card__name" id="svc-n-3-1" data-i18n="svc.3.1">Diagnostika <span class="svc-item__note">rasm + qolip olish</span></span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-3-2">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">02</span><span class="svc-card__name" id="svc-n-3-2" data-i18n="svc.3.2">Metall breketlar</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-3-3">
+                    <img class="svc-card__img" src="img/hero-smile.jpg" width="512" height="512" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">03</span><span class="svc-card__name" id="svc-n-3-3" data-i18n="svc.3.3">Keramika breketlari</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-3-4">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">04</span><span class="svc-card__name" id="svc-n-3-4" data-i18n="svc.3.4">Elaynerlar</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-3-5">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1609207825181-52d3214556dd?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">05</span><span class="svc-card__name" id="svc-n-3-5" data-i18n="svc.3.5">Nazorat tashrifi <span class="svc-item__note">ko‘rigi</span></span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-3-6">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">06</span><span class="svc-card__name" id="svc-n-3-6" data-i18n="svc.3.6">Breketlarni yechish</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-3-7">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1616391182219-e080b4d1043a?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1616391182219-e080b4d1043a?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1616391182219-e080b4d1043a?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">07</span><span class="svc-card__name" id="svc-n-3-7" data-i18n="svc.3.7">Reteynerlar</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+              </ol>
+            </section>
+            <section class="svc-panel" role="tabpanel" id="svc-panel-4" aria-labelledby="svc-tab-4">
+              <p class="svc-panel__desc" data-i18n="svc.c4desc">Tabiiy ko‘rinishdagi koronka va vinirlar, uzoq yillarga.</p>
+              <ol class="svc-deck" role="list">
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-4-1">
+                    <img class="svc-card__img" src="img/hero-smile.jpg" width="512" height="512" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">01</span><span class="svc-card__name" id="svc-n-4-1" data-i18n="svc.4.1">Vinirlar</span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-4-2">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1600170311833-c2cf5280ce49?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">02</span><span class="svc-card__name" id="svc-n-4-2" data-i18n="svc.4.2">Implant uchun metallsiz koronka <span class="svc-item__note">sirkoniy dioksid</span></span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-4-3">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1667133295352-ef4c83620e8e?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">03</span><span class="svc-card__name" id="svc-n-4-3" data-i18n="svc.4.3">Tish uchun metallsiz koronka <span class="svc-item__note">sirkoniy dioksid, e.max press</span></span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+                <li class="svc-card">
+                  <button class="svc-card__btn" type="button" aria-labelledby="svc-n-4-4">
+                    <img class="svc-card__img" src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70" srcset="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w, https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=70 720w" sizes="(max-width: 760px) 66vw, 330px" width="720" height="900" loading="lazy" decoding="async" alt="">
+                    <span class="svc-card__label"><span class="svc-card__num">04</span><span class="svc-card__name" id="svc-n-4-4" data-i18n="svc.4.4">Qattiq shikastlangan tishlar asosini tiklash <span class="svc-item__note">build-up</span></span></span>
+                    <span class="svc-card__go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+                  </button>
+                </li>
+              </ol>
+            </section>
+          </div>
+
+          <div class="svc__nav">
+            <button class="svc__arrow" type="button" data-deck-prev aria-label="Oldingi xizmat" data-i18n-attr="aria-label:svc.prev"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <p class="svc__count"><b data-deck-current>01</b> / <span data-deck-total>07</span></p>
+            <button class="svc__arrow svc__arrow--next" type="button" data-deck-next aria-label="Keyingi xizmat" data-i18n-attr="aria-label:svc.next"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>        </div>
       </div>
     </section>
 
@@ -354,9 +539,6 @@
               <li data-i18n="kids.l3">Ftorlash va fissuralarni germetizatsiya qilish</li>
               <li data-i18n="kids.l4">Ota-ona muolaja davomida doim yonida</li>
             </ul>
-            <a class="btn btn--ink" href="https://t.me/tooth_atelier" target="_blank" rel="noopener">
-              <span data-i18n="kids.cta">Farzandimni yozdirish</span> <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
           </div>
         </article>
 
@@ -380,9 +562,6 @@
               <li data-i18n="women.l3">Yumshoq oqartirish va milk parvarishi</li>
               <li data-i18n="women.l4">Sizga qulay, shoshilmas qabul vaqti</li>
             </ul>
-            <a class="btn btn--ink" href="https://t.me/tooth_atelier" target="_blank" rel="noopener">
-              <span data-i18n="cta.book">Qabulga yozilish</span> <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
           </div>
         </article>
       </div>
@@ -399,9 +578,6 @@
     <div class="container">
       <div class="footer__top">
         <h2 class="footer__title" data-reveal data-i18n="footer.title">Sizni <em>iliq</em> kutib olamiz</h2>
-        <a class="btn btn--primary" href="https://t.me/tooth_atelier" target="_blank" rel="noopener" data-reveal style="--i:1">
-          <span data-i18n="cta.book">Qabulga yozilish</span> <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-        </a>
       </div>
 
       <div class="footer__grid">
@@ -460,7 +636,7 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=8" defer></script>
-  <script src="script.js?v=6" defer></script>
+  <script src="i18n.js?v=14" defer></script>
+  <script src="script.js?v=10" defer></script>
 </body>
 </html>
