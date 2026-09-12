@@ -808,25 +808,6 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   align-items: center;
   gap: 0.35rem 0.8rem;
 }
-.doc__num {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--sage-200);
-  font-variant-numeric: lining-nums;
-}
-.doc__num::after {
-  content: "";
-  width: 1.6rem;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.55;
-  transform-origin: left;
-  transition: transform 900ms var(--ease-out);
-}
 .doc__role {
   font-size: 0.72rem;
   font-weight: 500;
@@ -864,7 +845,6 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   .doc__card:hover .doc__outline { transform: none; }
   .doc__card:hover .doc__outline path { opacity: 0.95; }
   .doc__card:hover .doc__rosette { opacity: 1; transform: none; }
-  .doc__card:hover .doc__num::after { transform: scaleX(1.6); }
   .doc__card:hover .doc__line + .doc__line > span { color: var(--sage-200); }
 }
 
