@@ -997,7 +997,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
 }
 .svc__title em { color: var(--sage-200); }
 
-/* Yo'nalish ichidan orqaga: 4 ta yo'nalish kartasiga qaytaradi */
+/* Yo'nalish ichidan orqaga: 4 ta yo'nalish kartasiga qaytaradi.
+   Pastki boshqaruvda turadi; yo'nalishlar ro'yxatida joyi saqlanadi, lekin ko'rinmaydi */
 .svc-back {
   display: inline-flex;
   align-items: center;
@@ -1012,11 +1013,28 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   letter-spacing: 0.02em;
   white-space: nowrap;
   cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(10px, 0, 0);
   transition:
     background-color var(--t-hover) var(--ease-out),
     border-color var(--t-hover) var(--ease-out),
     color var(--t-hover) var(--ease-out),
-    transform 150ms var(--ease-out);
+    opacity 300ms var(--ease-soft),
+    transform 300ms var(--ease-soft),
+    visibility 0s linear 300ms;
+}
+.svc.is-inside .svc-back {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    background-color var(--t-hover) var(--ease-out),
+    border-color var(--t-hover) var(--ease-out),
+    color var(--t-hover) var(--ease-out),
+    opacity 700ms var(--ease-out) 250ms,
+    transform 700ms var(--ease-out) 250ms,
+    visibility 0s;
 }
 .svc-back svg {
   width: 16px;
@@ -1028,7 +1046,11 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   border-color: transparent;
   color: var(--ink);
 }
-.svc-back:active { transform: scale(0.97); }
+.svc.is-inside .svc-back:active {
+  transform: scale(0.97);
+  transition-duration: 150ms;
+  transition-delay: 0s;
+}
 .svc-back:focus-visible {
   outline: 2px solid var(--sage-200);
   outline-offset: 3px;
@@ -1048,10 +1070,10 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   visibility: visible;
   transition-delay: 0s;
 }
-/* Panel boshi: orqaga tugmasi, yo'nalish nomi va izoh. Qatorlar hamma panelda bir xil, g'ildirak joyidan sakramaydi */
+/* Panel boshi: yo'nalish nomi va izoh. Qatorlar hamma panelda bir xil, g'ildirak joyidan sakramaydi */
 .svc-panel__head {
   display: grid;
-  grid-template-rows: 44px auto auto;
+  grid-template-rows: auto auto;
   justify-items: center;
   row-gap: 0.85rem;
   text-align: center;
@@ -1272,8 +1294,19 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   .svc-card:not(.is-center) .svc-card__btn:hover .svc-card__go { transform: scale(1.1); }
 }
 
-/* Boshqaruv: oldingi / keyingi va hisoblagich */
+/* Boshqaruv: strelkalar markazda, orqaga tugmasi ularning chap yonida */
 .svc__nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+.svc__nav .svc-back {
+  grid-area: 1 / 1;
+  justify-self: end;
+}
+.svc__steps {
+  grid-area: 1 / 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1331,6 +1364,19 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
     --cw: min(66vw, 270px);
     --step: 20deg;
   }
+  /* Telefonda orqaga tugmasi strelkalar ostida, bosh barmoq yetadigan joyda */
+  .svc__nav {
+    grid-template-columns: auto;
+    justify-content: center;
+    row-gap: 1rem;
+  }
+  .svc__nav .svc-back {
+    grid-area: 2 / 1;
+    justify-self: center;
+    transform: translate3d(0, -6px, 0);
+  }
+  .svc__steps { grid-area: 1 / 1; }
+  .svc.is-inside .svc__nav .svc-back { transform: none; }
   .svc-card__label { padding: 0.9rem 1rem 1rem; }
   .svc-card__num {
     top: 0.85rem;

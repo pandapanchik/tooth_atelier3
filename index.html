@@ -315,7 +315,6 @@
           <div class="svc__panels" data-reveal style="--i:1">
             <section class="svc-panel is-active" id="svc-panel-0" aria-labelledby="svc-ptitle-0">
               <div class="svc-panel__head">
-                <span class="svc-back-slot" aria-hidden="true"></span>
                 <h4 class="svc-panel__title" id="svc-ptitle-0" data-i18n="svc.pick">Yo‘nalishni tanlang</h4>
                 <p class="svc-panel__desc" data-i18n="svc.pickdesc">Kartani bosing: ichida shu yo‘nalishning barcha xizmatlari bor.</p>
               </div>
@@ -352,7 +351,6 @@
             </section>
             <section class="svc-panel" id="svc-panel-1" aria-labelledby="svc-ptitle-1">
               <div class="svc-panel__head">
-                <button class="svc-back" type="button" data-svc-back><svg aria-hidden="true"><use href="#i-arrow"/></svg><span data-i18n="svc.back">Barcha yo‘nalishlar</span></button>
                 <h4 class="svc-panel__title" id="svc-ptitle-1" data-i18n="svc.c1">Jarrohlik</h4>
                 <p class="svc-panel__desc" data-i18n="svc.c1desc">Maslahatdan implantatsiyagacha: aniq, ehtiyotkor va og‘riqsiz.</p>
               </div>
@@ -403,7 +401,6 @@
             </section>
             <section class="svc-panel" id="svc-panel-2" aria-labelledby="svc-ptitle-2">
               <div class="svc-panel__head">
-                <button class="svc-back" type="button" data-svc-back><svg aria-hidden="true"><use href="#i-arrow"/></svg><span data-i18n="svc.back">Barcha yo‘nalishlar</span></button>
                 <h4 class="svc-panel__title" id="svc-ptitle-2" data-i18n="svc.c2">Terapiya</h4>
                 <p class="svc-panel__desc" data-i18n="svc.c2desc">Tishingizni saqlab qolish uchun kerakli hamma narsa.</p>
               </div>
@@ -447,7 +444,6 @@
             </section>
             <section class="svc-panel" id="svc-panel-3" aria-labelledby="svc-ptitle-3">
               <div class="svc-panel__head">
-                <button class="svc-back" type="button" data-svc-back><svg aria-hidden="true"><use href="#i-arrow"/></svg><span data-i18n="svc.back">Barcha yo‘nalishlar</span></button>
                 <h4 class="svc-panel__title" id="svc-ptitle-3" data-i18n="svc.c3">Ortodontiya</h4>
                 <p class="svc-panel__desc" data-i18n="svc.c3desc">Birinchi tashxisdan reteynergacha: tekis tabassum sari yo‘l.</p>
               </div>
@@ -505,7 +501,6 @@
             </section>
             <section class="svc-panel" id="svc-panel-4" aria-labelledby="svc-ptitle-4">
               <div class="svc-panel__head">
-                <button class="svc-back" type="button" data-svc-back><svg aria-hidden="true"><use href="#i-arrow"/></svg><span data-i18n="svc.back">Barcha yo‘nalishlar</span></button>
                 <h4 class="svc-panel__title" id="svc-ptitle-4" data-i18n="svc.c4">Ortopediya</h4>
                 <p class="svc-panel__desc" data-i18n="svc.c4desc">Tabiiy ko‘rinishdagi koronka va vinirlar, uzoq yillarga.</p>
               </div>
@@ -542,10 +537,14 @@
             </section>
           </div>
 
+          <!-- Boshqaruv: yo'nalish ichida orqaga tugmasi strelkalar yonida, g'ildirak ostida turadi -->
           <div class="svc__nav">
-            <button class="svc__arrow" type="button" data-deck-prev aria-label="Oldingi xizmat" data-i18n-attr="aria-label:svc.prev"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
-            <p class="svc__count"><b data-deck-current>01</b> / <span data-deck-total>07</span></p>
-            <button class="svc__arrow svc__arrow--next" type="button" data-deck-next aria-label="Keyingi xizmat" data-i18n-attr="aria-label:svc.next"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="svc-back" type="button" data-svc-back><svg aria-hidden="true"><use href="#i-arrow"/></svg><span data-i18n="svc.back">Barcha yo‘nalishlar</span></button>
+            <div class="svc__steps">
+              <button class="svc__arrow" type="button" data-deck-prev aria-label="Oldingi xizmat" data-i18n-attr="aria-label:svc.prev"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <p class="svc__count"><b data-deck-current>01</b> / <span data-deck-total>07</span></p>
+              <button class="svc__arrow svc__arrow--next" type="button" data-deck-next aria-label="Keyingi xizmat" data-i18n-attr="aria-label:svc.next"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
           </div>        </div>
       </div>
     </section>

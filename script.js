@@ -95,7 +95,6 @@
       panel,
       list: panel.querySelector('.svc-deck'),
       cards: [...panel.querySelectorAll('.svc-card')],
-      back: panel.querySelector('[data-svc-back]'),
       active: 0,
       timers: []
     }));
@@ -103,6 +102,7 @@
     const home = decks[0];
     const prevBtn = svc.querySelector('[data-deck-prev]');
     const nextBtn = svc.querySelector('[data-deck-next]');
+    const backBtn = svc.querySelector('[data-svc-back]');
     const countNow = svc.querySelector('[data-deck-current]');
     const countAll = svc.querySelector('[data-deck-total]');
     const pad = (n) => String(n).padStart(2, '0');
@@ -175,6 +175,8 @@
         deck.panel.classList.toggle('is-active', on);
         deck.panel.inert = !on;
       });
+      // Orqaga tugmasi faqat yo'nalish ichida ko'rinadi
+      svc.classList.toggle('is-inside', current !== 0);
       syncNav();
     };
 
@@ -188,7 +190,7 @@
       decks[current].active = index === 0 ? from - 1 : 0;
       setPanels();
       enter(decks[current]);
-      const target = index === 0 ? home.cards[home.active].firstElementChild : decks[current].back;
+      const target = index === 0 ? home.cards[home.active].firstElementChild : backBtn;
       target.focus({ preventScroll: true });
     };
 
@@ -226,8 +228,8 @@
         go(deck.active + (e.key === 'ArrowRight' ? 1 : -1));
         deck.cards[deck.active].firstElementChild.focus({ preventScroll: true });
       });
-      if (deck.back) deck.back.addEventListener('click', () => select(0));
     });
+    backBtn.addEventListener('click', () => select(0));
 
     // Esc: yo'nalishlarga qaytish
     svc.addEventListener('keydown', (e) => {
