@@ -256,6 +256,120 @@
     }
   }
 
+  /* ---------- Shifokor ishlari: portretdagi tugma yorug' galereyani ochadi ---------- */
+  // Bir vaqtda bitta ish: barmoq bilan surish, strelkalar yoki klaviatura bilan almashadi
+  const works = document.querySelector('[data-works]');
+  if (works && typeof works.showModal === 'function') {
+    const panels = [...works.querySelectorAll('[data-works-doc]')];
+    const count = works.querySelector('[data-works-count]');
+    const prev = works.querySelector('[data-works-prev]');
+    const next = works.querySelector('[data-works-next]');
+    const HASH = '#ishlar-';
+    const pad2 = (n) => String(n).padStart(2, '0');
+    let pushed = false;
+    let track = null;
+    let total = 0;
+    // Strelka bosilganda boriladigan ish: silliq surilish tugaguncha hisoblagich orqaga sakramaydi
+    let target = null;
+
+    const current = () => Math.round(track.scrollLeft / track.clientWidth);
+    const sync = (i) => {
+      const focused = document.activeElement;
+      count.innerHTML = `<b>${pad2(i + 1)}</b> / ${pad2(total)}`;
+      prev.disabled = i === 0;
+      next.disabled = i === total - 1;
+      // Fokusdagi strelka o'chsa, fokus qarama-qarshi strelkaga o'tadi
+      if (focused && focused.disabled) (focused === next ? prev : next).focus();
+    };
+    const go = (dir) => {
+      const from = target ?? current();
+      const to = Math.max(0, Math.min(total - 1, from + dir));
+      if (to === from) return;
+      target = to;
+      track.scrollTo({ left: to * track.clientWidth, behavior: reduceMotion ? 'auto' : 'smooth' });
+      sync(to);
+    };
+
+    panels.forEach((panel) => {
+      const t = panel.querySelector('.works__track');
+      t.addEventListener('scroll', () => {
+        const i = current();
+        if (target !== null && i !== target) return;
+        target = null;
+        sync(i);
+      }, { passive: true });
+      // Foydalanuvchi o'zi sursa, strelka maqsadi bekor bo'ladi
+      ['pointerdown', 'wheel'].forEach((type) => {
+        t.addEventListener(type, () => { target = null; }, { passive: true });
+      });
+    });
+
+    const show = (id) => {
+      const panel = panels.find((p) => p.dataset.worksDoc === id);
+      if (!panel) return false;
+      panels.forEach((p) => { p.hidden = p !== panel; });
+      // Shu shifokorning barcha suratlari birdan yuklanadi: surganda bo'sh joy ko'rinmaydi
+      panel.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = 'eager'; });
+      works.setAttribute('aria-labelledby', panel.querySelector('.works__name').id);
+      if (!works.open) works.showModal();
+      track = panel.querySelector('.works__track');
+      total = track.children.length;
+      target = null;
+      track.scrollLeft = 0;
+      sync(0);
+      return true;
+    };
+
+    // Har bir galereyaning o'z havolasi bor (#ishlar-osimxon): telefondagi "orqaga" tugmasi uni yopadi
+    const open = (id) => {
+      if (!show(id)) return;
+      history.pushState({ works: id }, '', HASH + id);
+      pushed = true;
+    };
+    // Yopilgach tozalash darhol bajariladi: "close" hodisasi kechikishi mumkin (masalan, fon tabda)
+    const finish = () => {
+      pushed = false;
+      if (location.hash.startsWith(HASH)) history.replaceState(null, '', location.pathname + location.search);
+    };
+    // Oyna darhol yopiladi, tarix esa keyin tozalanadi: popstate'ni kutib qolinmaydi
+    const close = () => {
+      const wasPushed = pushed;
+      works.close();
+      finish();
+      if (wasPushed) history.back();
+    };
+
+    works.addEventListener('close', finish);
+    works.addEventListener('cancel', (e) => {
+      e.preventDefault();
+      close();
+    });
+    window.addEventListener('popstate', () => {
+      const id = history.state && history.state.works;
+      if (id && show(id)) {
+        pushed = true;
+      } else if (works.open) {
+        works.close();
+        finish();
+      }
+    });
+    works.querySelector('[data-works-close]').addEventListener('click', close);
+    document.querySelectorAll('[data-works-open]').forEach((btn) => {
+      btn.addEventListener('click', () => open(btn.dataset.worksOpen));
+    });
+
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    document.addEventListener('keydown', (e) => {
+      if (!works.open) return;
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'ArrowRight') go(1);
+    });
+
+    // Havola orqali kelinsa (masalan Instagram'dan), galereya darhol ochiladi
+    if (location.hash.startsWith(HASH)) show(location.hash.slice(HASH.length));
+  }
+
   /* ---------- Yil ---------- */
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();

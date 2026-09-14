@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tooth Atelier · Stomatologiya ateliesi</title>
-  <meta name="description" content="Tooth Atelier: tabassumingizni mehr bilan yaratamiz. Implantatsiya, estetik stomatologiya, ortodontiya, bolalar va ayollar uchun maxsus dasturlar.">
+  <meta name="description" content="Tooth Atelier: tabassumingizni mehr bilan yaratamiz. Implantatsiya, estetik stomatologiya, ortodontiya, 3D tomografiya, bolalar va ayollar uchun maxsus dasturlar.">
   <meta name="theme-color" content="#d9e3ee">
   <link rel="icon" href="favicon.ico?v=2" sizes="any">
   <link rel="icon" type="image/png" href="favicon.png?v=2">
@@ -21,7 +21,7 @@
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;1,7..72,400&family=Onest:wght@300..500&display=swap" rel="stylesheet">
   <!-- ?v=... : fayllar yangilanganda brauzer eski nusxani ko'rsatmasligi uchun raqamni oshiring -->
-  <link rel="stylesheet" href="styles.css?v=19">
+  <link rel="stylesheet" href="styles.css?v=23">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -68,6 +68,9 @@
     </symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24">
       <path d="M5 12h13M13 6.5 18.5 12 13 17.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
     </symbol>
   </svg>
 
@@ -197,10 +200,15 @@
                     <img src="img/doctors/shahzod-raxmatxojaev-900.webp" srcset="img/doctors/shahzod-raxmatxojaev-560.webp 560w, img/doctors/shahzod-raxmatxojaev-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
                   </div>
                   <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
+                  <button class="doc__works" type="button" data-works-open="shahzod" aria-haspopup="dialog" aria-describedby="doc-n-3">
+                    <span class="doc__works-thumbs" aria-hidden="true"><img src="img/works/shahzod-1-thumb.webp" width="96" height="96" loading="lazy" decoding="async" alt=""><img src="img/works/shahzod-3-thumb.webp" width="96" height="96" loading="lazy" decoding="async" alt=""></span>
+                    <span data-i18n="works.btn">Ishlarini ko‘rish</span>
+                    <span class="doc__works-count" aria-hidden="true">3</span>
+                  </button>
                 </div>
                 <figcaption class="doc__caption">
                   <p class="doc__meta"><span class="doc__role" data-i18n="doc.3.role">Jarroh-ortoped</span></p>
-                  <h3 class="doc__name">
+                  <h3 class="doc__name" id="doc-n-3">
                     <span class="doc__line"><span data-i18n="doc.3.first">Shahzod</span></span>
                     <span class="doc__line"><span data-i18n="doc.3.last">Raxmatxo‘jaev</span></span>
                   </h3>
@@ -233,10 +241,15 @@
                     <img src="img/doctors/osimxon-axrorxojaev-900.webp" srcset="img/doctors/osimxon-axrorxojaev-560.webp 560w, img/doctors/osimxon-axrorxojaev-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
                   </div>
                   <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
+                  <button class="doc__works" type="button" data-works-open="osimxon" aria-haspopup="dialog" aria-describedby="doc-n-4">
+                    <span class="doc__works-thumbs" aria-hidden="true"><img src="img/works/osimxon-2-thumb.webp" width="96" height="96" loading="lazy" decoding="async" alt=""><img src="img/works/osimxon-3-thumb.webp" width="96" height="96" loading="lazy" decoding="async" alt=""></span>
+                    <span data-i18n="works.btn">Ishlarini ko‘rish</span>
+                    <span class="doc__works-count" aria-hidden="true">4</span>
+                  </button>
                 </div>
                 <figcaption class="doc__caption">
                   <p class="doc__meta"><span class="doc__role" data-i18n="doc.4.role">Ortodont</span></p>
-                  <h3 class="doc__name">
+                  <h3 class="doc__name" id="doc-n-4">
                     <span class="doc__line"><span data-i18n="doc.4.first">Osimxon</span></span>
                     <span class="doc__line"><span data-i18n="doc.4.last">Axrorxo‘jaev</span></span>
                   </h3>
@@ -251,10 +264,15 @@
                     <img src="img/doctors/shirin-ataxanova-900.webp" srcset="img/doctors/shirin-ataxanova-560.webp 560w, img/doctors/shirin-ataxanova-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
                   </div>
                   <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
+                  <button class="doc__works" type="button" data-works-open="shirin" aria-haspopup="dialog" aria-describedby="doc-n-5">
+                    <span class="doc__works-thumbs" aria-hidden="true"><img src="img/works/shirin-3-thumb.webp" width="96" height="96" loading="lazy" decoding="async" alt=""><img src="img/works/shirin-4-thumb.webp" width="96" height="96" loading="lazy" decoding="async" alt=""></span>
+                    <span data-i18n="works.btn">Ishlarini ko‘rish</span>
+                    <span class="doc__works-count" aria-hidden="true">4</span>
+                  </button>
                 </div>
                 <figcaption class="doc__caption">
                   <p class="doc__meta"><span class="doc__role" data-i18n="doc.5.role">Ortoped</span></p>
-                  <h3 class="doc__name">
+                  <h3 class="doc__name" id="doc-n-5">
                     <span class="doc__line"><span data-i18n="doc.5.first">Shirin</span></span>
                     <span class="doc__line"><span data-i18n="doc.5.last">Ataxanova</span></span>
                   </h3>
@@ -549,6 +567,70 @@
       </div>
     </section>
 
+    <!-- ============ 3D TOMOGRAFIYA ============ -->
+    <section class="tomo" id="tomografiya" aria-labelledby="tomo-title">
+      <div class="container tomo__inner">
+        <!-- Apparat aylana sahna ustida, orqasida skaner halqasi -->
+        <div class="tomo__visual" data-reveal>
+          <span class="tomo__disc" aria-hidden="true"></span>
+          <svg class="tomo__rings" viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="tomo__ring-thin" cx="50" cy="50" r="49.6"/>
+            <circle class="tomo__ring-dash" cx="50" cy="50" r="47.2"/>
+          </svg>
+          <img class="tomo__img"
+               src="img/tomografiya-900.webp"
+               srcset="img/tomografiya-560.webp 560w, img/tomografiya-900.webp 900w"
+               sizes="(max-width: 960px) 90vw, 46vw"
+               width="900" height="811" loading="lazy" decoding="async"
+               alt="Klinikadagi zamonaviy 3D kompyuter tomografiya apparati"
+               data-i18n-attr="alt:img.tomo">
+          <p class="tomo__chip tomo__chip--3d glass glass--light"><span class="tomo__badge">3D</span><span class="tomo__chip-text" data-i18n="tomo.chip1">Tish, suyak va nervlar bitta suratda</span></p>
+          <p class="tomo__chip tomo__chip--time glass glass--light"><span class="tomo__chip-label" data-i18n="tomo.chip2l">Tekshiruv</span><span class="tomo__chip-value" data-i18n="tomo.chip2">Bir necha soniya</span></p>
+        </div>
+
+        <div class="tomo__copy">
+          <p class="eyebrow" data-reveal data-i18n="tomo.eyebrow">3D diagnostika · klinikaning o‘zida</p>
+          <h2 class="h2 h2--ink" id="tomo-title" data-reveal style="--i:1" data-i18n="tomo.title">Tishingizni <em>ichidan</em> ko‘ramiz</h2>
+          <p class="tomo__lead" data-reveal style="--i:2" data-i18n="tomo.lead">Oddiy rentgen tishning faqat soyasini ko‘rsatadi. 3D kompyuter tomografiyasi esa tish, ildiz, suyak va nervlarni har tomondan ko‘rsatadi. Shuning uchun davolash taxmin bilan emas, aniq reja bilan boshlanadi.</p>
+
+          <ol class="tomo__points" role="list" data-reveal style="--i:3">
+            <li class="tomo__point">
+              <span class="tomo__num" aria-hidden="true">01</span>
+              <div>
+                <h3 data-i18n="tomo.p1">Yashirin muammolar oldindan topiladi</h3>
+                <p data-i18n="tomo.p1t">Ildiz uchidagi yallig‘lanish, kista, yoriq yoki qo‘shimcha kanal: oddiy snimokda ko‘rinmaydigan narsalar vaqtida aniqlanadi.</p>
+              </div>
+            </li>
+            <li class="tomo__point">
+              <span class="tomo__num" aria-hidden="true">02</span>
+              <div>
+                <h3 data-i18n="tomo.p2">Implant millimetrgacha rejalanadi</h3>
+                <p data-i18n="tomo.p2t">Suyak hajmi va nerv joylashuvi aniq o‘lchanadi. Implant eng xavfsiz va mustahkam nuqtaga o‘rnatiladi.</p>
+              </div>
+            </li>
+            <li class="tomo__point">
+              <span class="tomo__num" aria-hidden="true">03</span>
+              <div>
+                <h3 data-i18n="tomo.p3">Tez, qulay va shu yerning o‘zida</h3>
+                <p data-i18n="tomo.p3t">Tekshiruv bir necha soniya davom etadi, nurlanish esa oddiy KT’ga qaraganda ancha kam. Boshqa diagnostika markaziga borish shart emas.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="tomo__types" data-reveal style="--i:4">
+            <p class="tomo__types-label" data-i18n="tomo.types">Tekshiruv turlari</p>
+            <ul role="list">
+              <li data-i18n="tomo.t1">Butun jag‘ning 3D tomografiyasi</li>
+              <li data-i18n="tomo.t2">Bir yoki bir necha tish sohasi</li>
+              <li data-i18n="tomo.t3">Panoramik snimok</li>
+            </ul>
+          </div>
+
+          <p class="tomo__note" data-reveal style="--i:5" data-i18n="tomo.note">Natijani shifokoringiz bilan birga ko‘rib chiqasiz: har bir qadam tushunarli bo‘ladi.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ MAXSUS: BOLALAR VA AYOLLAR ============ -->
     <section class="care" aria-labelledby="care-title">
       <div class="container">
@@ -674,7 +756,131 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=15" defer></script>
-  <script src="script.js?v=11" defer></script>
+  <!-- ============ SHIFOKOR ISHLARI: portretdagi tugma ochadi, #ishlar-<ism> havolasi ham ishlaydi ============ -->
+  <!-- Yorug' oyna: bir vaqtda bitta ish; surish, strelkalar va klaviatura bilan almashadi -->
+  <dialog class="works" data-works>
+    <button class="works__close" type="button" data-works-close aria-label="Yopish" data-i18n-attr="aria-label:works.close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+
+    <section class="works__doc" data-works-doc="osimxon" hidden>
+      <header class="works__head">
+        <img class="works__avatar" src="img/doctors/osimxon-axrorxojaev-560.webp" width="44" height="44" loading="lazy" decoding="async" alt="">
+        <div>
+          <h2 class="works__name" id="works-n-osimxon"><span data-i18n="doc.4.first">Osimxon</span> <span data-i18n="doc.4.last">Axrorxo‘jaev</span></h2>
+          <p class="works__role" data-i18n="doc.4.role">Ortodont</p>
+        </div>
+      </header>
+      <ol class="works__track" role="list">
+        <li class="case" style="--ar: 1026 / 1280">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/osimxon-1-560.webp" srcset="img/works/osimxon-1-560.webp 560w, img/works/osimxon-1-lg.webp 1026w" sizes="(max-width: 640px) 90vw, 70vh" width="1026" height="1280" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.o1">Metall breketlar bilan davolash</span><span class="case__note" data-i18n="works.o1n">Davolash boshlanishi</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 1079 / 1038">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/osimxon-2-560.webp" srcset="img/works/osimxon-2-560.webp 560w, img/works/osimxon-2-lg.webp 1079w" sizes="(max-width: 640px) 90vw, 70vh" width="1079" height="1038" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.o2">Qiyshiq tishlarni tekislash</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 1080 / 1350">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/osimxon-3-560.webp" srcset="img/works/osimxon-3-560.webp 560w, img/works/osimxon-3-lg.webp 1080w" sizes="(max-width: 640px) 90vw, 70vh" width="1080" height="1350" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.o3">Tish qatorini tekislash</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 1080 / 1350">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/osimxon-4-560.webp" srcset="img/works/osimxon-4-560.webp 560w, img/works/osimxon-4-lg.webp 1080w" sizes="(max-width: 640px) 90vw, 70vh" width="1080" height="1350" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.o4">Tishlamni to‘g‘rilash</span><span class="case__note" data-i18n="works.o4n">Yon tomondan ko‘rinish</span></figcaption>
+          </figure>
+        </li>
+      </ol>
+    </section>
+
+    <section class="works__doc" data-works-doc="shirin" hidden>
+      <header class="works__head">
+        <img class="works__avatar" src="img/doctors/shirin-ataxanova-560.webp" width="44" height="44" loading="lazy" decoding="async" alt="">
+        <div>
+          <h2 class="works__name" id="works-n-shirin"><span data-i18n="doc.5.first">Shirin</span> <span data-i18n="doc.5.last">Ataxanova</span></h2>
+          <p class="works__role" data-i18n="doc.5.role">Ortoped</p>
+        </div>
+      </header>
+      <ol class="works__track" role="list">
+        <li class="case" style="--ar: 1080 / 1032">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/shirin-1-560.webp" srcset="img/works/shirin-1-560.webp 560w, img/works/shirin-1-lg.webp 1080w" sizes="(max-width: 640px) 90vw, 70vh" width="1080" height="1032" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.s1">Implant ustiga koronka</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 1080 / 1350">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/shirin-2-560.webp" srcset="img/works/shirin-2-560.webp 560w, img/works/shirin-2-lg.webp 1080w" sizes="(max-width: 640px) 90vw, 70vh" width="1080" height="1350" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.s2">Professional tozalash va oqartirish</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 1080 / 1350">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/shirin-3-560.webp" srcset="img/works/shirin-3-560.webp 560w, img/works/shirin-3-lg.webp 1080w" sizes="(max-width: 640px) 90vw, 70vh" width="1080" height="1350" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.s3">Tishlarni oqartirish</span><span class="case__note" data-i18n="works.s3n">A3 rangdan B1 gacha</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 1079 / 1315">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/shirin-4-560.webp" srcset="img/works/shirin-4-560.webp 560w, img/works/shirin-4-lg.webp 1079w" sizes="(max-width: 640px) 90vw, 70vh" width="1079" height="1315" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.s4">Vinirlar bilan yangi tabassum</span></figcaption>
+          </figure>
+        </li>
+      </ol>
+    </section>
+
+    <section class="works__doc" data-works-doc="shahzod" hidden>
+      <header class="works__head">
+        <img class="works__avatar" src="img/doctors/shahzod-raxmatxojaev-560.webp" width="44" height="44" loading="lazy" decoding="async" alt="">
+        <div>
+          <h2 class="works__name" id="works-n-shahzod"><span data-i18n="doc.3.first">Shahzod</span> <span data-i18n="doc.3.last">Raxmatxo‘jaev</span></h2>
+          <p class="works__role" data-i18n="doc.3.role">Jarroh-ortoped</p>
+        </div>
+      </header>
+      <!-- Juftliklar: tepada "oldin", pastda "keyin" (ikkala surat 7:4 ga kesilgan) -->
+      <ol class="works__track" role="list">
+        <li class="case" style="--ar: 7 / 8">
+          <figure class="case__fig">
+            <div class="case__media case__media--pair">
+              <span class="case__half"><img src="img/works/shahzod-1-before-560.webp" srcset="img/works/shahzod-1-before-560.webp 560w, img/works/shahzod-1-before-lg.webp 1000w" sizes="(max-width: 640px) 90vw, 60vh" width="1000" height="571" loading="lazy" decoding="async" alt=""><span class="case__tag" data-i18n="works.before">Oldin</span></span>
+              <span class="case__half"><img src="img/works/shahzod-1-after-560.webp" srcset="img/works/shahzod-1-after-560.webp 560w, img/works/shahzod-1-after-lg.webp 1000w" sizes="(max-width: 640px) 90vw, 60vh" width="1000" height="571" loading="lazy" decoding="async" alt=""><span class="case__tag case__tag--after" data-i18n="works.after">Keyin</span></span>
+            </div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.h1">Tabassumni to‘liq tiklash</span><span class="case__note" data-i18n="works.h1n">Yeyilgan va shikastlangan tishlar</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 7 / 8">
+          <figure class="case__fig">
+            <div class="case__media case__media--pair">
+              <span class="case__half"><img src="img/works/shahzod-2-before-560.webp" srcset="img/works/shahzod-2-before-560.webp 560w, img/works/shahzod-2-before-lg.webp 1000w" sizes="(max-width: 640px) 90vw, 60vh" width="1000" height="571" loading="lazy" decoding="async" alt=""><span class="case__tag" data-i18n="works.before">Oldin</span></span>
+              <span class="case__half"><img src="img/works/shahzod-2-after-560.webp" srcset="img/works/shahzod-2-after-560.webp 560w, img/works/shahzod-2-after-lg.webp 1000w" sizes="(max-width: 640px) 90vw, 60vh" width="1000" height="571" loading="lazy" decoding="async" alt=""><span class="case__tag case__tag--after" data-i18n="works.after">Keyin</span></span>
+            </div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.h2">Eski koronkalarni almashtirish</span><span class="case__note" data-i18n="works.h2n">Metall o‘rniga keramika</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 7 / 8">
+          <figure class="case__fig">
+            <div class="case__media case__media--pair">
+              <span class="case__half"><img src="img/works/shahzod-3-before-560.webp" srcset="img/works/shahzod-3-before-560.webp 560w, img/works/shahzod-3-before-lg.webp 1000w" sizes="(max-width: 640px) 90vw, 60vh" width="1000" height="571" loading="lazy" decoding="async" alt=""><span class="case__tag" data-i18n="works.before">Oldin</span></span>
+              <span class="case__half"><img src="img/works/shahzod-3-after-560.webp" srcset="img/works/shahzod-3-after-560.webp 560w, img/works/shahzod-3-after-lg.webp 1000w" sizes="(max-width: 640px) 90vw, 60vh" width="1000" height="571" loading="lazy" decoding="async" alt=""><span class="case__tag case__tag--after" data-i18n="works.after">Keyin</span></span>
+            </div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.h3">Ikkala jag‘ni to‘liq tiklash</span><span class="case__note" data-i18n="works.h3n">Implantlar va keramik koronkalar</span></figcaption>
+          </figure>
+        </li>
+      </ol>
+    </section>
+
+    <footer class="works__foot">
+      <button class="works__arrow works__arrow--prev" type="button" data-works-prev aria-label="Oldingi ish" data-i18n-attr="aria-label:works.prev"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <p class="works__count" data-works-count aria-live="polite"><b>01</b> / 04</p>
+      <button class="works__arrow" type="button" data-works-next aria-label="Keyingi ish" data-i18n-attr="aria-label:works.next"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+    </footer>
+  </dialog>
+
+  <script src="i18n.js?v=19" defer></script>
+  <script src="script.js?v=16" defer></script>
 </body>
 </html>

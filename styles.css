@@ -959,6 +959,312 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   .team__progress { display: flex; }
 }
 
+/* ---------- SHIFOKOR ISHLARI: portretdagi tugma, galereya oynasi va katta ko'rish ---------- */
+
+/* Tugma portretning pastida, soya ustida turadi. transform ishlatilmaydi: kirish animatsiyasi (doc-fade) uni o'zi siljitadi */
+.doc__works {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: clamp(0.8rem, 2vw, 1.25rem);
+  width: max-content;
+  max-width: calc(100% - 1.5rem);
+  margin-inline: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.35rem 0.4rem 0.35rem 0.35rem;
+  border-radius: 999px;
+  border: 1px solid oklch(0.95 0.02 124 / 0.28);
+  background: oklch(0.2 0.006 250 / 0.55);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  color: var(--on-dark);
+  font: 500 0.88rem/1 var(--font-body);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--t-hover) var(--ease-out),
+    border-color var(--t-hover) var(--ease-out),
+    color var(--t-hover) var(--ease-out);
+}
+.doc__works-thumbs { display: flex; }
+.doc__works-thumbs img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--graphite-900);
+}
+.doc__works-thumbs img + img { margin-left: -11px; }
+.doc__works-count {
+  display: grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding-inline: 0.5rem;
+  border-radius: 999px;
+  background: var(--sage-200);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background-color var(--t-hover) var(--ease-out),
+    color var(--t-hover) var(--ease-out);
+}
+.doc__works:hover {
+  background: var(--sage-200);
+  border-color: transparent;
+  color: var(--ink);
+}
+.doc__works:hover .doc__works-count {
+  background: var(--ink);
+  color: var(--sage-200);
+}
+.doc__works:focus-visible {
+  outline: 2px solid var(--sage-200);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+.js .doc__works { opacity: 0; }
+.js .doc__card.is-in .doc__works {
+  opacity: 1;
+  animation: doc-fade 1000ms var(--ease-out) calc(var(--i, 0) * 140ms + 1000ms) backwards;
+}
+
+/* Galereya oynasi: butun ekran, yorug' qog'oz fon; bir vaqtda bitta ish, ortiqcha bezaksiz */
+html:has(dialog[open]) { overflow: hidden; }
+
+.works {
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+.works::backdrop { background: var(--paper); }
+.works[open] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  animation: works-fade 500ms var(--ease-out);
+}
+@keyframes works-fade { from { opacity: 0; } }
+@keyframes works-rise { from { opacity: 0; transform: translate3d(0, 14px, 0); } }
+
+/* Yopish va strelkalar: ingichka chiziqli doiralar, ustiga kelganda grafit bilan to'ladi */
+.works__close,
+.works__arrow {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid oklch(0.226 0.005 250 / 0.14);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color var(--t-hover) var(--ease-out),
+    border-color var(--t-hover) var(--ease-out),
+    color var(--t-hover) var(--ease-out),
+    opacity var(--t-hover) var(--ease-out),
+    transform 150ms var(--ease-out);
+}
+.works__close {
+  position: absolute;
+  z-index: 2;
+  top: clamp(0.9rem, 2vw, 1.5rem);
+  right: var(--gutter);
+  width: 44px;
+  height: 44px;
+}
+.works__arrow {
+  width: 48px;
+  height: 48px;
+}
+.works__close svg,
+.works__arrow svg { width: 18px; height: 18px; }
+.works__arrow--prev svg { transform: rotate(180deg); }
+@media (hover: hover) and (pointer: fine) {
+  .works__close:hover,
+  .works__arrow:hover {
+    background: var(--ink);
+    border-color: transparent;
+    color: var(--paper);
+  }
+}
+.works__arrow:active { transform: scale(0.94); }
+.works__arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+  pointer-events: none;
+}
+
+.works__doc {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+}
+.works__doc[hidden] { display: none; }
+
+.works__head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 44px;
+  padding: clamp(0.9rem, 2vw, 1.5rem) calc(var(--gutter) + 56px) 0 var(--gutter);
+  animation: works-rise 800ms var(--ease-out) 80ms backwards;
+}
+.works__avatar {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 18%;
+}
+.works__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1rem + 0.45vw, 1.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.works__role {
+  margin-top: 0.25rem;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Lenta: har bir ish ekran kengligini egallaydi, surilganda joyiga o'tiradi.
+   --cap: surat ostidagi sarlavha va havo uchun qoldiriladigan balandlik */
+.works__track {
+  --cap: 6.5rem;
+  container-type: size;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  animation: works-rise 900ms var(--ease-out) 160ms backwards;
+}
+.works__track::-webkit-scrollbar { display: none; }
+
+.case {
+  flex: 0 0 100%;
+  display: grid;
+  place-items: center;
+  padding-inline: var(--gutter);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+/* Surat lenta balandligiga sig'adi, eni esa ekrandan oshmaydi */
+.case__fig {
+  margin: 0;
+  width: min(100%, calc((100cqh - var(--cap)) * var(--ar)));
+}
+.case__media {
+  position: relative;
+  display: block;
+  aspect-ratio: var(--ar);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--paper-2);
+  box-shadow: 0 40px 80px -52px oklch(0.3 0.03 250 / 0.4);
+}
+.case__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.case__media--pair {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  overflow: visible;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.case__half {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--paper-2);
+}
+.case__tag {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: oklch(0.985 0.008 110 / 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.case__tag--after { background: var(--sage-200); }
+
+.case__caption { margin-top: 1rem; }
+.case__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  line-height: 1.25;
+}
+.case__note {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.works__foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0.75rem var(--gutter) max(1.25rem, env(safe-area-inset-bottom));
+  animation: works-rise 900ms var(--ease-out) 240ms backwards;
+}
+.works__count {
+  min-width: 4.5em;
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.works__count b {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .works__track { --cap: 7.5rem; }
+  .works__avatar { width: 40px; height: 40px; }
+}
+
 /* ---------- TO'LIQ XIZMATLAR: yo'nalish tablari + yoy bo'ylab aylanuvchi kartalar ---------- */
 
 .svc {
@@ -1390,6 +1696,233 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   }
 }
 
+/* ---------- 3D TOMOGRAFIYA (xizmatlar va bolalar bo'limi orasida) ---------- */
+
+.tomo {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: var(--space-section) calc(var(--space-section) * 0.35);
+  background:
+    radial-gradient(45% 55% at 22% 42%, oklch(0.94 0.024 249 / 0.95), transparent 72%),
+    linear-gradient(180deg, var(--paper-2), var(--paper) 70%);
+}
+.tomo__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+/* Apparat: aylana sahna va skaner halqalari */
+.tomo__visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+}
+.tomo__disc {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 36%, oklch(0.995 0.004 110), oklch(0.955 0.02 249) 62%, oklch(0.9 0.035 249));
+  box-shadow:
+    inset 0 1px 0 oklch(0.995 0.004 110),
+    0 60px 100px -60px oklch(0.4 0.05 250 / 0.45);
+}
+.tomo__rings {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--sky-600);
+  animation: spin 140s linear infinite;
+}
+.tomo__rings circle {
+  fill: none;
+  stroke: currentColor;
+}
+.tomo__ring-thin {
+  stroke-width: 0.25;
+  opacity: 0.35;
+}
+.tomo__ring-dash {
+  stroke-width: 0.6;
+  stroke-dasharray: 0.4 2.2;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+/* Rasmda ustun pastdan kesilgan: pastki qismi sahnaga so'nib kiradi */
+.tomo__img {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  height: auto;
+  margin-top: -4%;
+  -webkit-mask-image: linear-gradient(180deg, #000 74%, transparent 97%);
+  mask-image: linear-gradient(180deg, #000 74%, transparent 97%);
+  filter: drop-shadow(0 30px 34px oklch(0.35 0.03 250 / 0.22));
+}
+
+.tomo__chip {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  border-radius: var(--radius-md);
+  animation: float 12s var(--ease-soft) infinite alternate;
+}
+.tomo__chip--3d {
+  top: 8%;
+  left: -3%;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 17.5rem;
+  padding: 0.7rem 1.2rem 0.7rem 0.7rem;
+  border-radius: 999px;
+}
+.tomo__badge {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--on-dark);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+.tomo__chip-text {
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.tomo__chip--time {
+  right: -2%;
+  bottom: 12%;
+  display: grid;
+  gap: 0.2rem;
+  padding: 1rem 1.35rem 1.05rem;
+  animation: float 14s var(--ease-soft) 1.5s infinite alternate-reverse;
+}
+.tomo__chip-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--sky-700);
+}
+.tomo__chip-value {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.15;
+}
+
+/* Matn: havorang urg'u, bolalar (sage) va ayollar (havorang) kartalariga bog'lanadi */
+.tomo .eyebrow { color: var(--sky-700); }
+.tomo .h2 { max-width: 13ch; }
+.tomo .h2 em { color: var(--sky-700); }
+.tomo__lead {
+  margin-top: 1.5rem;
+  max-width: 48ch;
+  color: var(--ink-soft);
+}
+.tomo__points {
+  list-style: none;
+  margin: 2.2rem 0 0;
+  padding: 0;
+  border-top: 1px solid oklch(0.226 0.005 250 / 0.1);
+}
+.tomo__point {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  column-gap: 0.9rem;
+  padding-block: 1.15rem;
+  border-bottom: 1px solid oklch(0.226 0.005 250 / 0.1);
+}
+.tomo__num {
+  padding-top: 0.2rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--sky-700);
+}
+.tomo__point h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.05rem + 0.45vw, 1.4rem);
+  line-height: 1.25;
+}
+.tomo__point p {
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.tomo__types { margin-top: 1.8rem; }
+.tomo__types-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--olive-700);
+}
+.tomo__types ul {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tomo__types li {
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid oklch(0.47 0.075 252 / 0.22);
+  background: oklch(0.99 0.006 110 / 0.7);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+.tomo__note {
+  margin-top: 1.8rem;
+  max-width: 44ch;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 960px) {
+  .tomo__inner { grid-template-columns: 1fr; }
+  .tomo__visual {
+    width: min(100%, 520px);
+    justify-self: center;
+  }
+}
+@media (max-width: 640px) {
+  .tomo__chip--3d {
+    top: 2%;
+    left: 0;
+    max-width: 14.5rem;
+    padding: 0.55rem 0.95rem 0.55rem 0.55rem;
+    gap: 0.65rem;
+  }
+  .tomo__badge {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+  .tomo__chip-text { font-size: 0.78rem; }
+  .tomo__chip--time {
+    right: 0;
+    bottom: 6%;
+    padding: 0.8rem 1.1rem;
+  }
+  .tomo__chip-value { font-size: 1.2rem; }
+}
+
 /* ---------- MAXSUS: BOLALAR / AYOLLAR ---------- */
 
 .care {
@@ -1768,4 +2301,6 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   }
   .orb { animation: none; }
   .doc { animation: none; }
+  .tomo__rings,
+  .tomo__chip { animation: none; }
 }
