@@ -997,96 +997,47 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
 }
 .svc__title em { color: var(--sage-200); }
 
-/* Tablar: sage "tabletka" faol tab ostiga sokin sirpanadi */
-.svc-tabs {
-  --ind-x: 0px;
-  --ind-w: 0px;
-  position: relative;
-  display: flex;
-  gap: 2px;
-  width: fit-content;
-  max-width: 100%;
-  margin: clamp(1.75rem, 3.5vw, 2.5rem) auto 0;
-  padding: 5px;
-  border-radius: 999px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  background: oklch(0.97 0.01 250 / 0.05);
-  border: 1px solid oklch(0.95 0.02 124 / 0.14);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-}
-.svc-tabs::-webkit-scrollbar { display: none; }
-.svc-tabs::before {
-  content: "";
-  position: absolute;
-  top: 5px;
-  bottom: 5px;
-  left: 0;
-  width: var(--ind-w);
-  border-radius: 999px;
-  background: var(--sage-200);
-  box-shadow: 0 8px 30px -10px oklch(0.924 0.041 124 / 0.35);
-  transform: translateX(var(--ind-x));
-  opacity: 0;
-}
-.svc-tabs.is-ready::before {
-  opacity: 1;
-  transition:
-    transform 700ms var(--ease-out),
-    width 700ms var(--ease-out);
-}
-.svc-tab {
-  position: relative;
-  z-index: 1;
+/* Yo'nalish ichidan orqaga: 4 ta yo'nalish kartasiga qaytaradi */
+.svc-back {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
   min-height: 44px;
-  padding: 0 1.15rem;
-  border: 0;
+  padding: 0 1.15rem 0 0.95rem;
   border-radius: 999px;
-  background: none;
-  color: var(--on-dark-soft);
-  font: 500 0.92rem/1 var(--font-body);
+  border: 1px solid oklch(0.95 0.02 124 / 0.22);
+  background: oklch(0.97 0.01 250 / 0.04);
+  color: var(--on-dark);
+  font: 500 0.88rem/1 var(--font-body);
   letter-spacing: 0.02em;
   white-space: nowrap;
   cursor: pointer;
   transition:
-    color 600ms var(--ease-out),
+    background-color var(--t-hover) var(--ease-out),
+    border-color var(--t-hover) var(--ease-out),
+    color var(--t-hover) var(--ease-out),
     transform 150ms var(--ease-out);
 }
-.svc-tab:hover { color: var(--on-dark); }
-.svc-tab:active { transform: scale(0.97); }
-.svc-tab:focus-visible { outline-offset: -3px; border-radius: 999px; }
-.svc-tab[aria-selected="true"] { color: var(--ink); }
-/* JS ishlamasa ham faol tab ko'rinib tursin */
-.svc-tabs:not(.is-ready) .svc-tab[aria-selected="true"] { background: var(--sage-200); }
-
-.svc-tab__count {
-  display: inline-grid;
-  place-items: center;
-  min-width: 1.5rem;
-  height: 1.5rem;
-  padding-inline: 0.3rem;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-variant-numeric: tabular-nums;
-  background: oklch(0.97 0.01 250 / 0.08);
-  color: var(--sage-200);
-  transition:
-    background-color 600ms var(--ease-out),
-    color 600ms var(--ease-out);
+.svc-back svg {
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
 }
-.svc-tab[aria-selected="true"] .svc-tab__count {
-  background: oklch(0.226 0.005 250 / 0.1);
+.svc-back:hover {
+  background: var(--sage-200);
+  border-color: transparent;
   color: var(--ink);
+}
+.svc-back:active { transform: scale(0.97); }
+.svc-back:focus-visible {
+  outline: 2px solid var(--sage-200);
+  outline-offset: 3px;
 }
 
 /* Panellar bitta katakda: eskisi aylanib ketguncha ko'rinib turadi */
 .svc__panels {
   display: grid;
-  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
 }
 .svc-panel {
   grid-area: 1 / 1;
@@ -1097,23 +1048,41 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   visibility: visible;
   transition-delay: 0s;
 }
-.svc-panel__desc {
-  max-width: 46ch;
-  margin-inline: auto;
-  color: var(--on-dark-soft);
-  font-weight: 300;
+/* Panel boshi: orqaga tugmasi, yo'nalish nomi va izoh. Qatorlar hamma panelda bir xil, g'ildirak joyidan sakramaydi */
+.svc-panel__head {
+  display: grid;
+  grid-template-rows: 44px auto auto;
+  justify-items: center;
+  row-gap: 0.85rem;
+  text-align: center;
   opacity: 0;
   transform: translate3d(0, 8px, 0);
   transition:
     opacity 300ms var(--ease-soft),
     transform 300ms var(--ease-soft);
 }
-.svc-panel.is-active .svc-panel__desc {
+.svc-panel.is-active .svc-panel__head {
   opacity: 1;
   transform: none;
   transition:
     opacity 900ms var(--ease-out) 250ms,
     transform 900ms var(--ease-out) 250ms;
+}
+.svc-panel__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 1.25rem + 1.2vw, 2.2rem);
+  line-height: 1.1;
+  color: var(--sage-200);
+}
+.svc-panel__desc {
+  max-width: 46ch;
+  min-height: 3.2em;
+  margin: 0 auto;
+  color: var(--on-dark-soft);
+  font-weight: 300;
 }
 
 /* Yoy: hamma kartalar bir joyda turadi va pastdagi uzoq o'q atrofida --k * --step burchakka buriladi.
@@ -1154,6 +1123,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   transition-delay: calc(var(--abs) * 35ms);
 }
 
+/* Karta: rasm butun kartani egallaydi, nomi pastda rasm ustida oq harflarda */
 .svc-card__btn {
   position: relative;
   display: block;
@@ -1165,7 +1135,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   overflow: hidden;
   isolation: isolate;
   background: var(--graphite-800);
-  color: inherit;
+  color: var(--on-dark);
   font: inherit;
   text-align: left;
   cursor: pointer;
@@ -1184,6 +1154,22 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   outline-offset: 4px;
   border-radius: var(--radius-lg);
 }
+.svc-card__photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+}
+/* Pastdan qorayib boruvchi soya: nom o'qiladi, rasmning yuqorisi ochiq qoladi */
+.svc-card__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(0deg, oklch(0.17 0.006 250 / 0.9), oklch(0.17 0.006 250 / 0.55) 22%, transparent 58%),
+    linear-gradient(180deg, oklch(0.17 0.006 250 / 0.35), transparent 22%);
+  pointer-events: none;
+}
 .svc-card__img {
   position: absolute;
   inset: 0;
@@ -1197,17 +1183,6 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   -webkit-user-drag: none;
 }
 .svc-card.is-center .svc-card__img { transform: scale(1.02); }
-/* Yuqorida yozuv o'qilishi uchun yumshoq soya */
-.svc-card__btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    linear-gradient(180deg, oklch(0.18 0.006 250 / 0.5), transparent 42%),
-    linear-gradient(0deg, oklch(0.18 0.006 250 / 0.3), transparent 35%);
-  pointer-events: none;
-}
 /* Markazdan uzoqlashgan sari karta grafitga cho'kadi */
 .svc-card__btn::after {
   content: "";
@@ -1220,40 +1195,41 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   pointer-events: none;
 }
 
+/* Raqam yuqorida chapda, nomi pastda: hech qanday quti yo'q, faqat soya ustidagi matn */
 .svc-card__label {
   position: absolute;
+  inset: 0;
   z-index: 2;
-  top: 0.8rem;
-  left: 0.8rem;
-  right: 4.2rem;
-  display: grid;
-  gap: 0.3rem;
-  padding: 0.85rem 1rem 0.95rem;
-  border-radius: 16px;
-  background: oklch(0.22 0.006 250 / 0.42);
-  border: 1px solid oklch(0.97 0.01 110 / 0.14);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.15rem 1.25rem 1.25rem;
+  text-shadow: 0 1px 14px oklch(0.17 0.006 250 / 0.45);
+  pointer-events: none;
 }
 .svc-card__num {
+  position: absolute;
+  top: 1.05rem;
+  left: 1.25rem;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 0.92rem;
+  font-size: 1rem;
   line-height: 1;
   color: var(--sage-200);
 }
 .svc-card__name {
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.3rem);
-  line-height: 1.2;
+  font-size: clamp(1.3rem, 1.05rem + 0.7vw, 1.6rem);
+  line-height: 1.12;
   color: var(--on-dark);
+  text-wrap: balance;
 }
 .svc-card .svc-item__note {
   display: block;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
   font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 300;
+  font-size: 0.82rem;
+  font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.4;
   color: var(--on-dark-soft);
@@ -1283,6 +1259,12 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
 .svc-card.is-center .svc-card__go {
   opacity: 0;
   transform: scale(0.5);
+}
+/* Yo'nalish kartasi markazda turganda ham bosiladi: strelka ko'rinib turadi */
+.svc-card--cat.is-center .svc-card__btn { cursor: pointer; }
+.svc-card--cat.is-center .svc-card__go {
+  opacity: 1;
+  transform: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1349,12 +1331,10 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
     --cw: min(66vw, 270px);
     --step: 20deg;
   }
-  .svc-tab { padding: 0 0.9rem; }
-  .svc-card__label {
-    top: 0.6rem;
-    left: 0.6rem;
-    right: 3.6rem;
-    padding: 0.7rem 0.8rem 0.8rem;
+  .svc-card__label { padding: 0.9rem 1rem 1rem; }
+  .svc-card__num {
+    top: 0.85rem;
+    left: 1rem;
   }
   .svc-card__go {
     top: 0.6rem;

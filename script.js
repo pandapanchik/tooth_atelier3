@@ -88,26 +88,25 @@
     updateFill();
   }
 
-  /* ---------- Xizmatlar: yo'nalish tablari + yoy bo'ylab aylanuvchi kartalar ---------- */
-  const tablist = document.querySelector('.svc-tabs');
-  if (tablist) {
-    const tabs = [...tablist.querySelectorAll('[role="tab"]')];
-    const decks = tabs.map((tab) => {
-      const panel = document.getElementById(tab.getAttribute('aria-controls'));
-      return {
-        panel,
-        list: panel.querySelector('.svc-deck'),
-        cards: [...panel.querySelectorAll('.svc-card')],
-        active: 0,
-        timers: []
-      };
-    });
-    const prevBtn = document.querySelector('[data-deck-prev]');
-    const nextBtn = document.querySelector('[data-deck-next]');
-    const countNow = document.querySelector('[data-deck-current]');
-    const countAll = document.querySelector('[data-deck-total]');
+  /* ---------- Xizmatlar: avval 4 ta yo'nalish kartasi, bittasi tanlansa faqat uning xizmatlari aylanadi ---------- */
+  const svc = document.querySelector('.svc');
+  if (svc) {
+    const decks = [...svc.querySelectorAll('.svc-panel')].map((panel) => ({
+      panel,
+      list: panel.querySelector('.svc-deck'),
+      cards: [...panel.querySelectorAll('.svc-card')],
+      back: panel.querySelector('[data-svc-back]'),
+      active: 0,
+      timers: []
+    }));
+    // 0-panel: yo'nalishlar g'ildiragi; uning i-kartasi (i + 1)-panelni ochadi
+    const home = decks[0];
+    const prevBtn = svc.querySelector('[data-deck-prev]');
+    const nextBtn = svc.querySelector('[data-deck-next]');
+    const countNow = svc.querySelector('[data-deck-current]');
+    const countAll = svc.querySelector('[data-deck-total]');
     const pad = (n) => String(n).padStart(2, '0');
-    let current = Math.max(0, tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true'));
+    let current = 0;
     let introduced = false;
 
     // k: karta markazdan necha qadam narida. CSS uni pastdagi uzoq o'q atrofida k * qadam burchakka buradi
@@ -170,67 +169,28 @@
       syncNav();
     };
 
-    // Tilla indikatorni faol tab ostiga joylash (til yoki shrift o'zgarsa ham qayta o'lchanadi)
-    const moveIndicator = () => {
-      const active = tabs[current];
-      tablist.style.setProperty('--ind-x', `${active.offsetLeft}px`);
-      tablist.style.setProperty('--ind-w', `${active.offsetWidth}px`);
-      if (!tablist.classList.contains('is-ready')) {
-        void tablist.offsetWidth; // birinchi joylashuv sirpanishsiz bo'lsin
-        tablist.classList.add('is-ready');
-      }
-    };
-
-    const setTabs = () => {
-      tabs.forEach((tab, i) => {
+    const setPanels = () => {
+      decks.forEach((deck, i) => {
         const on = i === current;
-        tab.setAttribute('aria-selected', String(on));
-        tab.tabIndex = on ? 0 : -1;
-        decks[i].panel.classList.toggle('is-active', on);
-        decks[i].panel.inert = !on;
+        deck.panel.classList.toggle('is-active', on);
+        deck.panel.inert = !on;
       });
-      moveIndicator();
       syncNav();
     };
 
     const select = (index) => {
       if (index === current) return;
       introduced = true;
-      leave(decks[current]);
+      const from = current;
+      leave(decks[from]);
       current = index;
-      decks[current].active = 0;
-      setTabs();
+      // Ortga qaytilganda g'ildirak hozirgina ko'rilgan yo'nalishda to'xtaydi
+      decks[current].active = index === 0 ? from - 1 : 0;
+      setPanels();
       enter(decks[current]);
+      const target = index === 0 ? home.cards[home.active].firstElementChild : decks[current].back;
+      target.focus({ preventScroll: true });
     };
-
-    const bringIntoView = (tab) => {
-      tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
-    };
-
-    tablist.addEventListener('click', (e) => {
-      const tab = e.target.closest('[role="tab"]');
-      if (!tab) return;
-      select(tabs.indexOf(tab));
-      bringIntoView(tab);
-    });
-
-    // Klaviatura: ← → Home End (roving tabindex)
-    tablist.addEventListener('keydown', (e) => {
-      const i = tabs.indexOf(document.activeElement);
-      if (i < 0) return;
-      const keys = {
-        ArrowRight: (i + 1) % tabs.length,
-        ArrowLeft: (i - 1 + tabs.length) % tabs.length,
-        Home: 0,
-        End: tabs.length - 1
-      };
-      if (!(e.key in keys)) return;
-      e.preventDefault();
-      const next = keys[e.key];
-      select(next);
-      tabs[next].focus();
-      bringIntoView(tabs[next]);
-    });
 
     // Kartalar: bosish, barmoq bilan surish va klaviatura strelkalari
     decks.forEach((deck, d) => {
@@ -242,7 +202,9 @@
             swiped = false;
             return;
           }
-          if (d === current) go(i);
+          if (d !== current) return;
+          if (deck === home) select(i + 1);
+          else go(i);
         });
       });
       deck.list.addEventListener('pointerdown', (e) => {
@@ -264,13 +226,19 @@
         go(deck.active + (e.key === 'ArrowRight' ? 1 : -1));
         deck.cards[deck.active].firstElementChild.focus({ preventScroll: true });
       });
+      if (deck.back) deck.back.addEventListener('click', () => select(0));
+    });
+
+    // Esc: yo'nalishlarga qaytish
+    svc.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && current !== 0) select(0);
     });
 
     prevBtn.addEventListener('click', () => go(decks[current].active - 1));
     nextBtn.addEventListener('click', () => go(decks[current].active + 1));
 
     decks.forEach((deck) => place(deck));
-    setTabs();
+    setPanels();
 
     // Birinchi marta ko'ringanda g'ildirak kirib keladi
     if (!reduceMotion && 'IntersectionObserver' in window) {
@@ -284,14 +252,6 @@
       }, { threshold: 0.3 });
       deckIO.observe(first.list);
     }
-
-    if ('ResizeObserver' in window) {
-      const ro = new ResizeObserver(moveIndicator);
-      tabs.forEach((tab) => ro.observe(tab));
-    } else {
-      window.addEventListener('resize', moveIndicator);
-    }
-    if (document.fonts) document.fonts.ready.then(moveIndicator);
   }
 
   /* ---------- Yil ---------- */
