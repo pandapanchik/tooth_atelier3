@@ -21,7 +21,7 @@
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;1,7..72,400&family=Onest:wght@300..500&display=swap" rel="stylesheet">
   <!-- ?v=... : fayllar yangilanganda brauzer eski nusxani ko'rsatmasligi uchun raqamni oshiring -->
-  <link rel="stylesheet" href="styles.css?v=26">
+  <link rel="stylesheet" href="styles.css?v=27">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -71,6 +71,9 @@
     </symbol>
     <symbol id="i-close" viewBox="0 0 24 24">
       <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M5.5 12.5 10 17l8.5-9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
   </svg>
 
@@ -567,6 +570,174 @@
       </div>
     </section>
 
+    <!-- ============ DAVOLASH YO'LI: har yo'nalishdan ikki muolaja, suratlar zigzag, ip skroll bilan chiziladi ============ -->
+    <section class="path" id="davolash" aria-labelledby="path-title">
+      <div class="container">
+        <header class="path__head">
+          <h2 class="h2 h2--ink" id="path-title" data-reveal data-i18n="path.title">Har bir muolaja <em>xotirjam</em> o‘tadi</h2>
+          <p class="path__lead" data-reveal style="--i:1" data-i18n="path.lead">Qo‘rquv ko‘pincha noma’lumlikdan keladi. Shuning uchun har bir yo‘nalishda sizni nima kutishini oldindan, oddiy so‘zlar bilan aytib beramiz.</p>
+        </header>
+
+        <!-- Ipni script.js suratlarning haqiqiy o'rnidan chizadi; JS bo'lmasa ham bo'lim to'liq o'qiladi -->
+        <div class="path__body" data-path>
+          <svg class="path__line" aria-hidden="true" focusable="false">
+            <path class="path__track"/>
+            <path class="path__ink"/>
+            <g class="path__nodes"></g>
+            <g class="path__tip is-hidden"><circle class="path__tip-halo" r="13"/><circle class="path__tip-dot" r="4.5"/></g>
+          </svg>
+
+          <ol class="path__groups" role="list">
+            <li class="path__group">
+              <h3 class="path__cat"><span class="path__cat-pill"><span class="path__cat-num" aria-hidden="true">01</span><span data-i18n="svc.c1">Jarrohlik</span></span></h3>
+              <ol class="path__stops" role="list">
+                <li class="stop stop--l">
+                  <div class="stop__media">
+                    <span class="stop__photo" data-reveal><img src="img/services/implant.webp" width="720" height="893" loading="lazy" decoding="async" alt="" style="--zoom: 1.12; --focus: 50% 42%"></span>
+                  </div>
+                  <div class="stop__copy" data-reveal style="--i:1">
+                    <h4 class="stop__title" data-i18n="path.s1.t">Implant o‘rnatish</h4>
+                    <p class="stop__text" data-i18n="path.s1.p">Avval 3D tomografiyada suyakni o‘lchab, implant joyini millimetrgacha rejalaymiz. O‘rnatish mahalliy og‘riqsizlantirish ostida o‘tadi: siz yengil bosimni sezasiz, <strong>og‘riqni emas</strong>.</p>
+                    <ul class="stop__notes" role="list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s1.n1">Aniq reja 3D tomografiya asosida</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s1.n2">Og‘riqsiz va shoshilmasdan</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s1.n3">O‘sha kuniyoq uyga qaytasiz</span></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="stop stop--r">
+                  <div class="stop__media stop__media--round">
+                    <span class="stop__photo" data-reveal><img src="img/services/implant-koronka.webp" width="720" height="857" loading="lazy" decoding="async" alt="" style="--focus: 50% 40%"></span>
+                  </div>
+                  <div class="stop__copy" data-reveal style="--i:1">
+                    <h4 class="stop__title" data-i18n="path.s2.t">Implant ustiga koronka</h4>
+                    <p class="stop__text" data-i18n="path.s2.p">Implant suyak bilan tinchgina birikib olgach, ustiga tabiiy ko‘rinishdagi koronka qo‘yiladi. Bu bosqichda kesish ham, og‘riq ham yo‘q: <strong>qiyinchiliksiz</strong> moslash va tabassum.</p>
+                    <ul class="stop__notes" role="list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s2.n1">Rangi qo‘shni tishlarga moslanadi</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s2.n2">Kesishsiz, qulay bosqich</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s2.n3">Bemalol chaynaysiz va kulasiz</span></li>
+                    </ul>
+                  </div>
+                </li>
+              </ol>
+            </li>
+
+            <li class="path__group">
+              <h3 class="path__cat"><span class="path__cat-pill"><span class="path__cat-num" aria-hidden="true">02</span><span data-i18n="svc.c2">Terapiya</span></span></h3>
+              <ol class="path__stops" role="list">
+                <li class="stop stop--l">
+                  <div class="stop__media">
+                    <span class="stop__photo" data-reveal><img src="img/services/tish-tozalash.webp" width="720" height="960" loading="lazy" decoding="async" alt="" style="--focus: 50% 42%"></span>
+                  </div>
+                  <div class="stop__copy" data-reveal style="--i:1">
+                    <h4 class="stop__title" data-i18n="path.s3.t">Tishlarni professional tozalash</h4>
+                    <p class="stop__text" data-i18n="path.s3.p">Ultratovush va yumshoq cho‘tkalar tish toshi hamda dog‘larni ehtiyotkorlik bilan ketkazadi. Muolaja <strong>og‘riqsiz</strong> o‘tadi, oxirida tishlaringiz silliq va toza bo‘lib qoladi.</p>
+                    <ul class="stop__notes" role="list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s3.n1">Tish toshi va dog‘lar ketadi</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s3.n2">Milklar uchun yumshoq parvarish</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s3.n3">Uyda parvarish bo‘yicha maslahatlar</span></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="stop stop--r">
+                  <div class="stop__media stop__media--wide">
+                    <span class="stop__photo" data-reveal><img src="img/services/restavratsiya.webp" width="720" height="480" loading="lazy" decoding="async" alt=""></span>
+                  </div>
+                  <div class="stop__copy" data-reveal style="--i:1">
+                    <h4 class="stop__title" data-i18n="path.s4.t">Karies va restavratsiya</h4>
+                    <p class="stop__text" data-i18n="path.s4.p">Kichik kariesni ham, kattaroq shikastni ham og‘riqsizlantirish bilan davolaymiz. Tish shakli va rangi shunday tiklanadiki, plomba qayerdaligini <strong>o‘zingiz ham topa olmaysiz</strong>.</p>
+                    <ul class="stop__notes" role="list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s4.n1">Og‘riqsiz davolash</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s4.n2">Tish rangiga mos material</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s4.n3">Ko‘pincha bitta tashrifda</span></li>
+                    </ul>
+                  </div>
+                </li>
+              </ol>
+            </li>
+
+            <li class="path__group">
+              <h3 class="path__cat"><span class="path__cat-pill"><span class="path__cat-num" aria-hidden="true">03</span><span data-i18n="svc.c3">Ortodontiya</span></span></h3>
+              <ol class="path__stops" role="list">
+                <li class="stop stop--l">
+                  <div class="stop__media">
+                    <span class="stop__photo" data-reveal><img src="img/services/metall-breket.webp" width="720" height="900" loading="lazy" decoding="async" alt=""></span>
+                  </div>
+                  <div class="stop__copy" data-reveal style="--i:1">
+                    <h4 class="stop__title" data-i18n="path.s5.t">Breketlar</h4>
+                    <p class="stop__text" data-i18n="path.s5.p">Breketlar tishlarga maxsus yelim bilan <strong>og‘riqsiz</strong> yopishtiriladi, hech narsa parmalanmaydi. Dastlabki bir necha kun biroz ko‘nikish kerak bo‘ladi, keyin ular deyarli sezilmaydi.</p>
+                    <ul class="stop__notes" role="list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s5.n1">Metall yoki deyarli ko‘rinmas keramika</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s5.n2">Tishlar sekin va xavfsiz suriladi</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s5.n3">Qisqa, muntazam nazorat tashriflari</span></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="stop stop--r">
+                  <div class="stop__media stop__media--wide">
+                    <span class="stop__photo" data-reveal><img src="img/services/reteyner.webp" width="1021" height="579" loading="lazy" decoding="async" alt="" style="--focus: 50% 40%"></span>
+                  </div>
+                  <div class="stop__copy" data-reveal style="--i:1">
+                    <h4 class="stop__title" data-i18n="path.s6.t">Reteyner</h4>
+                    <p class="stop__text" data-i18n="path.s6.p">Breketlar yechilgach, tishlar ichki tomondan ingichka sim bilan ushlab turiladi. U tashqaridan ko‘rinmaydi, gapirish va ovqatlanishga <strong>xalaqit bermaydi</strong>.</p>
+                    <ul class="stop__notes" role="list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s6.n1">Tashqaridan ko‘rinmaydi</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s6.n2">Tez va og‘riqsiz o‘rnatiladi</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s6.n3">Tekis tabassum uzoq saqlanadi</span></li>
+                    </ul>
+                  </div>
+                </li>
+              </ol>
+            </li>
+
+            <li class="path__group">
+              <h3 class="path__cat"><span class="path__cat-pill"><span class="path__cat-num" aria-hidden="true">04</span><span data-i18n="svc.c4">Ortopediya</span></span></h3>
+              <ol class="path__stops" role="list">
+                <li class="stop stop--l">
+                  <div class="stop__media">
+                    <span class="stop__photo" data-reveal><img src="img/services/vinir.webp" width="720" height="1080" loading="lazy" decoding="async" alt="" style="--focus: 50% 32%"></span>
+                  </div>
+                  <div class="stop__copy" data-reveal style="--i:1">
+                    <h4 class="stop__title" data-i18n="path.s7.t">Vinirlar</h4>
+                    <p class="stop__text" data-i18n="path.s7.p">Avval tabassum dizaynini birga ko‘rib chiqamiz, keyin yupqa keramik plastinkalar tishning old yuzasiga yopishtiriladi. Tayyorlash minimal va <strong>og‘riqsiz</strong>.</p>
+                    <ul class="stop__notes" role="list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s7.n1">Natijani oldindan ko‘rasiz</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s7.n2">Rang va shakl sizga moslanadi</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s7.n3">Tabiiy yaltiroqlik va shaffoflik</span></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="stop stop--r">
+                  <div class="stop__media stop__media--round">
+                    <span class="stop__photo" data-reveal><img src="img/services/koronka-implant.webp" width="594" height="596" loading="lazy" decoding="async" alt=""></span>
+                  </div>
+                  <div class="stop__copy" data-reveal style="--i:1">
+                    <h4 class="stop__title" data-i18n="path.s8.t">Metallsiz koronka</h4>
+                    <p class="stop__text" data-i18n="path.s8.p">Qattiq shikastlangan tishni olib tashlamay, sirkoniy yoki e.max koronka bilan tiklaymiz. Davolash davomida vaqtinchalik koronka qo‘yiladi, shuning uchun <strong>bemalol tabassum qilasiz</strong>.</p>
+                    <ul class="stop__notes" role="list">
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s8.n1">Tishingiz saqlab qolinadi</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s8.n2">Tabiiy rang, metall ko‘rinmaydi</span></li>
+                      <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="path.s8.n3">Uzoq yillarga mustahkam</span></li>
+                    </ul>
+                  </div>
+                </li>
+              </ol>
+            </li>
+          </ol>
+
+          <!-- Ip oxiri: rozetka ochiladi, keyingi qadam qabulga yozilish -->
+          <div class="path__end">
+            <span class="path__seal" aria-hidden="true"><svg><use href="#rosette"/></svg></span>
+            <p class="path__end-title" data-i18n="path.end">Qaysi muolaja sizga mos, birinchi tashrifda <em>birga</em> aniqlaymiz</p>
+            <a class="btn btn--primary" href="https://t.me/tooth_atelier" target="_blank" rel="noopener">
+              <span data-i18n="cta.book">Qabulga yozilish</span>
+              <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ 3D TOMOGRAFIYA ============ -->
     <section class="tomo" id="tomografiya" aria-labelledby="tomo-title">
       <div class="container tomo__inner">
@@ -964,7 +1135,7 @@
     </footer>
   </dialog>
 
-  <script src="i18n.js?v=22" defer></script>
-  <script src="script.js?v=16" defer></script>
+  <script src="i18n.js?v=23" defer></script>
+  <script src="script.js?v=18" defer></script>
 </body>
 </html>

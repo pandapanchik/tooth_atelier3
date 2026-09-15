@@ -1679,6 +1679,348 @@ html:has(dialog[open]) { overflow: hidden; }
   }
 }
 
+/* ---------- DAVOLASH YO'LI: har yo'nalishdan ikki surat zigzag bo'lib turadi,
+   ular orasidagi ingichka ip skroll bilan chiziladi va har bir suratni tashqi tomonidan aylanib o'tadi ---------- */
+
+.path {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: var(--space-section) calc(var(--space-section) * 0.55);
+  background:
+    radial-gradient(38% 22% at 0% 20%, oklch(0.93 0.045 124 / 0.5), transparent 70%),
+    radial-gradient(40% 20% at 100% 58%, oklch(0.94 0.024 249 / 0.6), transparent 70%),
+    linear-gradient(180deg, var(--paper), var(--paper-2));
+}
+.path__head {
+  display: grid;
+  justify-items: center;
+  gap: 1.4rem;
+  text-align: center;
+}
+.path__head .h2 { max-width: 15ch; }
+.path__lead {
+  max-width: 50ch;
+  color: var(--ink-soft);
+  font-weight: 300;
+  font-size: clamp(1.02rem, 0.98rem + 0.2vw, 1.15rem);
+}
+
+/* Ip suratlar ortida turadi; yo'lini script.js suratlarning haqiqiy o'rni va shaklidan quradi */
+.path__body {
+  --rail: 1.25rem;
+  position: relative;
+  margin-top: clamp(3.5rem, 7vw, 5.5rem);
+}
+.path__line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.path__track,
+.path__ink {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Oldindagi yo'l nuqta-nuqta iz bo'lib ko'rinadi, skroll bilan ustidan to'q chiziq yuradi */
+.path__track {
+  stroke: oklch(0.45 0.05 115 / 0.3);
+  stroke-width: 1.2;
+  stroke-dasharray: 0.5 7;
+}
+.path__ink {
+  stroke: var(--olive-700);
+  stroke-width: 1.6;
+}
+.path__node {
+  fill: var(--paper);
+  stroke: var(--olive-700);
+  stroke-width: 1.3;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.7);
+  transition:
+    fill 600ms var(--ease-out),
+    transform 900ms var(--ease-expo);
+}
+.path__node.is-lit {
+  fill: var(--olive-700);
+  transform: none;
+}
+.path__tip { transition: opacity 500ms var(--ease-out); }
+.path__tip.is-hidden { opacity: 0; }
+.path__tip-dot { fill: var(--olive-700); }
+.path__tip-halo {
+  fill: var(--sage-300);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tip-breathe 2.6s var(--ease-soft) infinite alternate;
+}
+@keyframes tip-breathe {
+  from { transform: scale(0.65); opacity: 0.7; }
+  to   { transform: scale(1.3); opacity: 0.25; }
+}
+
+.path__groups,
+.path__stops {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.path__group + .path__group { margin-top: clamp(4rem, 8vw, 6.5rem); }
+
+/* Yo'nalish nomi ip ustidagi bekat: ip uning ostidan o'tib, keyingi suratga yo'l oladi */
+.path__cat {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+.path__cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 1.35rem 0.4rem 0.4rem;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid oklch(0.226 0.005 250 / 0.1);
+  box-shadow: 0 18px 40px -26px oklch(0.4 0.04 124 / 0.55);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.4rem);
+  line-height: 1.1;
+}
+.path__cat-num {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--sage-100);
+  color: var(--olive-700);
+  font-style: italic;
+  font-size: 1rem;
+  font-variant-numeric: lining-nums;
+  transition:
+    background-color 700ms var(--ease-out),
+    color 700ms var(--ease-out);
+}
+.js .path__cat.is-lit .path__cat-num {
+  background: var(--olive-700);
+  color: var(--paper);
+}
+
+/* Bekat: surat va matn yonma-yon, har ikkinchisida o'rin almashadi */
+.stop {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  column-gap: clamp(3rem, 9vw, 9rem);
+}
+.stop + .stop { margin-top: clamp(4.5rem, 9vw, 7.5rem); }
+.stop--r .stop__media { grid-area: 1 / 2; }
+.stop--r .stop__copy { grid-area: 1 / 1; }
+
+.stop__media {
+  --rb: var(--radius-lg);
+  width: min(100%, 440px);
+  justify-self: end;
+  container-type: inline-size;
+}
+.stop--r .stop__media { justify-self: start; }
+.stop__media--round { width: min(78%, 340px); }
+.stop__media--wide { width: min(100%, 500px); }
+
+/* Shakllar: arka (yuqorisi yarim doira), doira va keng deraza. Radiuslar cqw'da berilgan:
+   script.js ularni o'qib, ipni aynan shu chiziq bo'ylab aylantiradi */
+.stop__photo {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px var(--rb) var(--rb);
+  border-radius: 50cqw 50cqw var(--rb) var(--rb);
+  background: var(--paper-2);
+  box-shadow: 0 50px 90px -56px oklch(0.35 0.03 124 / 0.55);
+}
+.stop__media--round .stop__photo {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border-radius: 50cqw;
+}
+.stop__media--wide .stop__photo {
+  aspect-ratio: 3 / 2;
+  border-radius: 25cqw 25cqw var(--rb) var(--rb);
+}
+.stop__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  transform-origin: var(--focus, 50% 50%);
+  transform: scale(var(--zoom, 1));
+}
+/* Ip yetib kelganda surat sokin "joyiga tushadi" */
+.js .stop__photo img {
+  transform: scale(calc(var(--zoom, 1) * 1.1));
+  transition: transform 2200ms var(--ease-out);
+}
+.js .stop.is-lit .stop__photo img { transform: scale(var(--zoom, 1)); }
+
+.stop__copy { max-width: 40ch; }
+.stop--l .stop__copy { justify-self: start; }
+.stop--r .stop__copy { justify-self: end; }
+.stop__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 1.25rem + 1.5vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.stop__text {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+/* Tinchlantiruvchi so'z: sage marker bilan belgilangandek */
+.stop__text strong {
+  font-weight: 500;
+  color: var(--ink);
+  padding-inline: 0.12em;
+  background: linear-gradient(180deg,
+    transparent 58%,
+    oklch(0.924 0.041 124 / 0.95) 58%,
+    oklch(0.924 0.041 124 / 0.95) 92%,
+    transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.stop__notes {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.5rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid oklch(0.226 0.005 250 / 0.1);
+}
+.stop__notes li {
+  display: grid;
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  column-gap: 0.7rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.stop__notes svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15em;
+  color: var(--olive-700);
+}
+
+/* Ip oxiri: logodagi rozetka ochiladi va qabulga yozilish taklif qilinadi */
+.path__end {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 1.75rem;
+  margin-top: clamp(5rem, 10vw, 8rem);
+  text-align: center;
+}
+.path__seal {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid oklch(0.45 0.05 115 / 0.3);
+  box-shadow: 0 24px 50px -30px oklch(0.4 0.04 124 / 0.6);
+  transition: border-color 900ms var(--ease-out);
+}
+.path__seal svg {
+  width: 72%;
+  height: 72%;
+  color: var(--olive-700);
+  transition:
+    opacity 900ms var(--ease-out),
+    transform 1800ms var(--ease-out);
+}
+.js .path__seal svg {
+  opacity: 0.3;
+  transform: scale(0.6) rotate(-120deg);
+}
+.js .path__end.is-lit .path__seal { border-color: var(--olive-700); }
+.js .path__end.is-lit .path__seal svg {
+  opacity: 1;
+  transform: none;
+}
+.path__end-title {
+  max-width: 21ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.15rem + 1.5vw, 2.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.path__end-title em { color: var(--olive-700); }
+
+/* Telefon: bitta ustun, ip chap chetda to'g'ri yo'l bo'lib tushadi va bekatlardan o'tadi */
+@media (max-width: 760px) {
+  .path__head {
+    justify-items: start;
+    text-align: left;
+  }
+  .path__cat {
+    justify-content: flex-start;
+    margin-bottom: 1.75rem;
+  }
+  .path__cat-pill {
+    padding: 0 0.9rem 0 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .path__cat-num {
+    width: calc(var(--rail) * 2);
+    height: calc(var(--rail) * 2);
+  }
+  .stop {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.5rem;
+    padding-left: calc(var(--rail) * 2 + 1rem);
+  }
+  .stop--r .stop__media,
+  .stop--r .stop__copy { grid-area: auto; }
+  .stop .stop__media {
+    justify-self: start;
+    width: min(100%, 330px);
+  }
+  .stop .stop__media--round { width: min(72%, 250px); }
+  .stop .stop__media--wide { width: 100%; }
+  .stop .stop__copy { justify-self: start; }
+  .stop + .stop,
+  .path__group + .path__group { margin-top: 3.5rem; }
+  .path__end {
+    justify-items: start;
+    gap: 1.25rem;
+    margin-top: 4rem;
+    text-align: left;
+  }
+  .path__seal {
+    width: calc(var(--rail) * 2);
+    height: calc(var(--rail) * 2);
+  }
+}
+
 /* ---------- 3D TOMOGRAFIYA (xizmatlar va bolalar bo'limi orasida) ---------- */
 
 .tomo {
@@ -2353,4 +2695,5 @@ html:has(dialog[open]) { overflow: hidden; }
   .tomo__rings,
   .tomo__chip,
   .tomo__view { animation: none; }
+  .path__tip-halo { animation: none; }
 }

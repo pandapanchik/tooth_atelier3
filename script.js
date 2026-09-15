@@ -370,6 +370,198 @@
     if (location.hash.startsWith(HASH)) show(location.hash.slice(HASH.length));
   }
 
+  /* ---------- Davolash yo'li: har yo'nalishdan ikki surat, ular orasida skroll bilan chiziladigan ip ---------- */
+  // Yo'l suratlarning haqiqiy o'rni va shaklidan quriladi: bekatdan chiqib, har bir suratni tashqi tomonidan
+  // aylanib o'tadi va keyingisiga oqib boradi. Skroll qilinganda ipning uchi ekran balandligining 62% iga ergashadi
+  const route = document.querySelector('[data-path]');
+  const routeItems = route ? [...route.querySelectorAll('.path__cat, .stop, .path__end')] : [];
+  if (route && 'ResizeObserver' in window) {
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = route.querySelector('.path__line');
+    const track = svg.querySelector('.path__track');
+    const ink = svg.querySelector('.path__ink');
+    const tip = svg.querySelector('.path__tip');
+    const nodeLayer = svg.querySelector('.path__nodes');
+    const narrow = window.matchMedia('(max-width: 760px)');
+    const STEP = 6;   // yo'l uzunligi bo'yicha namuna qadami, px
+    const GAP = 18;   // ip surat chetidan shuncha nari yuradi, px
+    const fx = (n) => n.toFixed(1);
+    let xs = [];
+    let ys = [];
+    let total = 0;
+    let drawn = 0;
+    let anchors = [];
+    let frame = 0;
+    let first = true;
+
+    // Yotiq S-egri: ip ikkala uchida ham gorizontal yo'nalishda turadi, shuning uchun bo'g'inlar silliq
+    const link = (a, b) => {
+      const dir = Math.sign(b[0] - a[0]) || 1;
+      const k = Math.max(Math.abs(b[0] - a[0]) * 0.5, 24);
+      return ` C ${fx(a[0] + dir * k)} ${fx(a[1])} ${fx(b[0] - dir * k)} ${fx(b[1])} ${fx(b[0])} ${fx(b[1])}`;
+    };
+
+    const build = () => {
+      const box = route.getBoundingClientRect();
+      const rect = (el) => {
+        const r = el.getBoundingClientRect();
+        return { x: r.left - box.left, y: r.top - box.top, w: r.width, h: r.height };
+      };
+      const centre = (el) => {
+        const r = rect(el);
+        return [r.x + r.w / 2, r.y + r.h / 2];
+      };
+      // Telefonda ip chap chetdagi raqamli doiralar markazidan to'g'ri tushadi
+      const rail = narrow.matches;
+      const railX = rail ? centre(route.querySelector('.path__cat-num'))[0] : 0;
+      const nodes = [];
+      let d = '';
+      let pos = null;
+      anchors = [];
+
+      // Hozirgacha qurilgan yo'l uzunligi: ip shu nuqtaga yetganda bekat yonadi
+      const lengthSoFar = () => {
+        track.setAttribute('d', d);
+        return track.getTotalLength();
+      };
+
+      routeItems.forEach((item) => {
+        // Yo'nalish nomi va oxirgi rozetka: ip ularning markazidan o'tadi
+        if (!item.classList.contains('stop')) {
+          const c = centre(item.querySelector('.path__cat-pill, .path__seal'));
+          const p = rail ? [railX, c[1]] : c;
+          if (!pos) d = `M ${fx(p[0])} ${fx(p[1])}`;
+          else d += rail ? ` L ${fx(p[0])} ${fx(p[1])}` : link(pos, p);
+          pos = p;
+          anchors.push({ el: item, len: lengthSoFar() });
+          return;
+        }
+
+        const r = rect(item.querySelector('.stop__media'));
+        let p;
+        let hug = '';
+        if (rail) {
+          p = [railX, r.y + r.h / 2];
+          d += ` L ${fx(p[0])} ${fx(p[1])}`;
+          pos = p;
+        } else {
+          // Surat shakli CSS'dan olinadi: arka, doira yoki keng deraza
+          const cs = getComputedStyle(item.querySelector('.stop__photo'));
+          const R = (parseFloat(cs.borderTopLeftRadius) || 0) + GAP;
+          const B = (parseFloat(cs.borderBottomLeftRadius) || 0) + GAP;
+          const s = item.classList.contains('stop--r') ? 1 : -1;   // tashqi tomon: chap (-1) yoki o'ng (1)
+          const sweep = s > 0 ? 1 : 0;
+          const top = r.y - GAP;
+          const bottom = r.y + r.h + GAP;
+          const out = s > 0 ? r.x + r.w + GAP : r.x - GAP;
+          // Ip suratning tepa o'rtasiga kiradi, tashqi yoni bo'ylab tushadi va pastidan ichkariga buriladi
+          p = [r.x + r.w / 2, top];
+          d += link(pos, p);
+          pos = [out - s * B, bottom];
+          hug = ` L ${fx(out - s * R)} ${fx(top)} A ${fx(R)} ${fx(R)} 0 0 ${sweep} ${fx(out)} ${fx(top + R)}` +
+            ` L ${fx(out)} ${fx(bottom - B)} A ${fx(B)} ${fx(B)} 0 0 ${sweep} ${fx(pos[0])} ${fx(pos[1])}`;
+        }
+        const len = lengthSoFar();
+        const node = document.createElementNS(NS, 'circle');
+        node.setAttribute('class', 'path__node');
+        node.setAttribute('cx', fx(p[0]));
+        node.setAttribute('cy', fx(p[1]));
+        node.setAttribute('r', '5');
+        nodes.push(node);
+        anchors.push({ el: item, len }, { el: node, len });
+        d += hug;
+      });
+
+      track.setAttribute('d', d);
+      ink.setAttribute('d', d);
+      total = track.getTotalLength();
+      ink.style.strokeDasharray = `${fx(total)} ${fx(total)}`;
+      nodeLayer.replaceChildren(...nodes);
+
+      // Yo'l bo'ylab nuqtalar: ekrandagi balandlikdan uzunlikni tez topish uchun (y hech qachon kamaymaydi)
+      xs = [];
+      ys = [];
+      for (let l = 0; l < total; l += STEP) {
+        const pt = track.getPointAtLength(l);
+        xs.push(pt.x);
+        ys.push(pt.y);
+      }
+      const end = track.getPointAtLength(total);
+      xs.push(end.x);
+      ys.push(end.y);
+    };
+
+    // Ekranning 62% balandligidagi chiziq yo'lning qaysi uzunligiga to'g'ri keladi
+    const locate = () => {
+      const y = window.innerHeight * 0.62 - route.getBoundingClientRect().top;
+      const n = ys.length;
+      if (!n || y <= ys[0]) return 0;
+      if (y >= ys[n - 1]) return total;
+      let lo = 1;
+      let hi = n - 1;
+      while (lo < hi) {
+        const mid = (lo + hi) >> 1;
+        if (ys[mid] < y) lo = mid + 1;
+        else hi = mid;
+      }
+      const y0 = ys[lo - 1];
+      const t = ys[lo] > y0 ? (y - y0) / (ys[lo] - y0) : 1;
+      return Math.min(total, (lo - 1 + t) * STEP);
+    };
+
+    const render = () => {
+      if (!xs.length) return;   // yo'l hali qurilmagan (skroll ResizeObserver'dan oldin kelishi mumkin)
+      ink.style.strokeDashoffset = fx(total - drawn);
+      const i = drawn / STEP;
+      const i0 = Math.min(xs.length - 1, Math.floor(i));
+      const i1 = Math.min(xs.length - 1, i0 + 1);
+      const t = i - Math.floor(i);
+      tip.setAttribute('transform', `translate(${fx(xs[i0] + (xs[i1] - xs[i0]) * t)} ${fx(ys[i0] + (ys[i1] - ys[i0]) * t)})`);
+      tip.classList.toggle('is-hidden', reduceMotion || drawn < 2 || drawn > total - 2);
+      anchors.forEach(({ el, len }) => el.classList.toggle('is-lit', drawn >= len - 1));
+    };
+
+    // Ip maqsadga birdan sakramaydi: har kadrda qolgan masofaning bir qismini bosib, sekin ulanib boradi
+    const tick = () => {
+      frame = 0;
+      const goal = locate();
+      const diff = goal - drawn;
+      drawn = Math.abs(diff) < 0.5 ? goal : drawn + diff * 0.09;
+      render();
+      if (drawn !== goal) frame = requestAnimationFrame(tick);
+    };
+    const request = () => {
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
+
+    // O'lcham, shrift yoki til o'zgarsa yo'l qayta quriladi. Birinchi marta ip boshidan chiziladi
+    const refresh = () => {
+      build();
+      drawn = reduceMotion ? total : first ? 0 : locate();
+      first = false;
+      render();
+      if (!reduceMotion) request();
+    };
+    let pending = 0;
+    new ResizeObserver(() => {
+      if (!pending) pending = requestAnimationFrame(() => { pending = 0; refresh(); });
+    }).observe(route);
+
+    // Skroll faqat bo'lim ekranga yaqin bo'lganda tinglanadi
+    if (!reduceMotion) {
+      const onScroll = () => request();
+      new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) window.addEventListener('scroll', onScroll, { passive: true });
+        else window.removeEventListener('scroll', onScroll);
+        request();
+      }, { rootMargin: '25% 0px' }).observe(route);
+      window.addEventListener('resize', request);
+    }
+  } else {
+    // Eski brauzer: ip chizilmaydi, lekin suratlar va bekatlar to'liq holatda ko'rinadi
+    routeItems.forEach((el) => el.classList.add('is-lit'));
+  }
+
   /* ---------- Yil ---------- */
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
