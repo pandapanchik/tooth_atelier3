@@ -1804,6 +1804,59 @@ html:has(dialog[open]) { overflow: hidden; }
   line-height: 1.15;
 }
 
+/* Tomograf dasturidagi ko'rinishlar: skaner orbitasi ustida yo'ldoshlar.
+   --x/--y aylana yoyidagi nuqta (radius 52%, -75°, -42°, -9°); sahna kvadrat bo'lgani uchun
+   foizli margin doirani aynan shu nuqtaga markazlaydi */
+.tomo__views {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+.tomo__view {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 16%;
+  margin: -8% 0 0 -8%;
+  animation: float 12s var(--ease-soft) infinite alternate;
+}
+.tomo__view:nth-child(2) { animation-delay: -4s; }
+.tomo__view:nth-child(3) { animation-delay: -8s; }
+.tomo__view img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--graphite-900);
+  box-shadow:
+    0 0 0 3px var(--paper),
+    0 0 0 4px oklch(0.62 0.075 250 / 0.35),
+    0 22px 36px -18px oklch(0.3 0.04 250 / 0.55);
+}
+.tomo__view-label {
+  position: absolute;
+  top: calc(100% - 0.55rem);
+  left: 50%;
+  translate: -50% 0;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 6px 14px -8px oklch(0.3 0.04 250 / 0.35);
+  font-size: 0.56rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--sky-700);
+}
+
 /* Matn: havorang urg'u, bolalar (sage) va ayollar (havorang) kartalariga bog'lanadi */
 .tomo .eyebrow { color: var(--sky-700); }
 .tomo .h2 { max-width: 13ch; }
@@ -1904,6 +1957,21 @@ html:has(dialog[open]) { overflow: hidden; }
     padding: 0.8rem 1.1rem;
   }
   .tomo__chip-value { font-size: 1.2rem; }
+  /* Telefonda orbitada joy yo'q: ko'rinishlar sahna ostida qator bo'lib turadi */
+  .tomo__visual { margin-bottom: 7rem; }
+  .tomo__views {
+    inset: calc(100% + 2.25rem) 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 1.9rem;
+  }
+  .tomo__view {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 4.75rem;
+    margin: 0;
+  }
 }
 
 /* ---------- MAXSUS: BOLALAR / AYOLLAR ---------- */
@@ -2283,5 +2351,6 @@ html:has(dialog[open]) { overflow: hidden; }
   .orb { animation: none; }
   .doc { animation: none; }
   .tomo__rings,
-  .tomo__chip { animation: none; }
+  .tomo__chip,
+  .tomo__view { animation: none; }
 }
