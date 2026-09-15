@@ -564,30 +564,6 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   to   { transform: rotate(1.6deg) scale(1.055); }
 }
 
-.glass--chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.55rem 1rem 0.55rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.66rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.glass--chip svg {
-  width: 26px;
-  height: 26px;
-  color: var(--sky-700);
-  animation: spin 60s linear infinite;
-}
-.hero__chip {
-  position: absolute;
-  top: 9%;
-  right: -2%;
-  animation: float 11s var(--ease-soft) infinite alternate;
-}
-
 .hero__hours {
   position: absolute;
   left: -9%;
@@ -1191,7 +1167,8 @@ html:has(dialog[open]) { overflow: hidden; }
   user-select: none;
   -webkit-user-drag: none;
 }
-.case__media--pair {
+.case__media--pair,
+.case__media--trio {
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 6px;
@@ -1200,6 +1177,12 @@ html:has(dialog[open]) { overflow: hidden; }
   background: none;
   box-shadow: none;
 }
+/* Uchlik: birinchi surat to'liq enida, qolgan ikkitasi ostida yonma-yon (hammasi 7:4) */
+.case__media--trio {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+}
+.case__media--trio > :first-child { grid-column: 1 / -1; }
 .case__half {
   position: relative;
   min-height: 0;
@@ -2232,7 +2215,6 @@ html:has(dialog[open]) { overflow: hidden; }
     width: min(88%, 460px);
   }
   .hero__hours { left: -6%; bottom: 6%; }
-  .hero__chip { right: -4%; }
   .hero__title { max-width: 13ch; }
 
   .section-head { grid-template-columns: 1fr; }
@@ -2261,7 +2243,6 @@ html:has(dialog[open]) { overflow: hidden; }
   .hero__visual { width: 94%; }
   .hero__hours { left: -3%; bottom: 2%; padding: 0.9rem 1.1rem; min-width: 0; }
   .hero__hours-time { font-size: 1.35rem; }
-  .hero__chip { top: 4%; right: -3%; }
   .hero__actions { gap: 1.1rem; }
   .hero__actions > .btn { width: 100%; justify-content: center; }
   .scroll-cue { display: none; }
