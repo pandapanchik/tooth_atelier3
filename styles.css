@@ -499,6 +499,23 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
   gap: 1.25rem 1.75rem;
 }
 
+.hero__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+.hero__phone {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  font-variant-numeric: lining-nums;
+  white-space: nowrap;
+  transition: color var(--t-hover) var(--ease-out);
+}
+.hero__phone:hover { color: var(--olive-700); }
 .socials {
   display: flex;
   align-items: center;
