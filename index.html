@@ -349,10 +349,15 @@
                     <img src="img/doctors/akrom-rixsiev-900.webp" srcset="img/doctors/akrom-rixsiev-560.webp 560w, img/doctors/akrom-rixsiev-900.webp 900w" sizes="(max-width: 760px) min(74vw, 330px), (max-width: 1300px) 30vw, 380px" width="900" height="1200" loading="lazy" decoding="async" alt="">
                   </div>
                   <svg class="doc__rosette" aria-hidden="true"><use href="#rosette"/></svg>
+                  <button class="doc__works" type="button" data-works-open="akrom" aria-haspopup="dialog" aria-describedby="doc-n-2">
+                    <span class="doc__works-thumbs" aria-hidden="true"><img src="img/works/akrom-1-thumb.webp" width="96" height="96" loading="lazy" decoding="async" alt=""><img src="img/works/akrom-2-thumb.webp" width="96" height="96" loading="lazy" decoding="async" alt=""></span>
+                    <span data-i18n="works.btn">Ishlarini ko‘rish</span>
+                    <span class="doc__works-count" aria-hidden="true">2</span>
+                  </button>
                 </div>
                 <figcaption class="doc__caption">
                   <p class="doc__meta"><span class="doc__role" data-i18n="doc.2.role">Jarroh-ortoped</span></p>
-                  <h3 class="doc__name">
+                  <h3 class="doc__name" id="doc-n-2">
                     <span class="doc__line"><span data-i18n="doc.2.first">Akrom</span></span>
                     <span class="doc__line"><span data-i18n="doc.2.last">Rixsiev</span></span>
                   </h3>
@@ -1071,6 +1076,33 @@
   <dialog class="works" data-works>
     <button class="works__close" type="button" data-works-close aria-label="Yopish" data-i18n-attr="aria-label:works.close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
 
+    <section class="works__doc" data-works-doc="akrom" hidden>
+      <header class="works__head">
+        <img class="works__avatar" src="img/doctors/akrom-rixsiev-560.webp" width="44" height="44" loading="lazy" decoding="async" alt="">
+        <div>
+          <h2 class="works__name" id="works-n-akrom"><span data-i18n="doc.2.first">Akrom</span> <span data-i18n="doc.2.last">Rixsiev</span></h2>
+          <p class="works__role" data-i18n="doc.2.role">Jarroh-ortoped</p>
+        </div>
+      </header>
+      <ol class="works__track" role="list">
+        <li class="case" style="--ar: 7 / 8">
+          <figure class="case__fig">
+            <div class="case__media case__media--pair">
+              <span class="case__half"><img src="img/works/akrom-1-before-560.webp" srcset="img/works/akrom-1-before-560.webp 560w, img/works/akrom-1-before-lg.webp 1000w" sizes="(max-width: 640px) 90vw, 60vh" width="1000" height="571" loading="lazy" decoding="async" alt=""><span class="case__tag" data-i18n="works.before">Oldin</span></span>
+              <span class="case__half"><img src="img/works/akrom-1-after-560.webp" srcset="img/works/akrom-1-after-560.webp 560w, img/works/akrom-1-after-lg.webp 1000w" sizes="(max-width: 640px) 90vw, 60vh" width="1000" height="571" loading="lazy" decoding="async" alt=""><span class="case__tag case__tag--after" data-i18n="works.after">Keyin</span></span>
+            </div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.h1">Tabassumni to‘liq tiklash</span></figcaption>
+          </figure>
+        </li>
+        <li class="case" style="--ar: 3 / 2">
+          <figure class="case__fig">
+            <div class="case__media"><img src="img/works/akrom-2-560.webp" srcset="img/works/akrom-2-560.webp 560w, img/works/akrom-2-lg.webp 1080w" sizes="(max-width: 640px) 90vw, 70vh" width="1080" height="720" loading="lazy" decoding="async" alt=""></div>
+            <figcaption class="case__caption"><span class="case__title" data-i18n="works.a2">Davolashdan oldingi holat</span></figcaption>
+          </figure>
+        </li>
+      </ol>
+    </section>
+
     <section class="works__doc" data-works-doc="osimxon" hidden>
       <header class="works__head">
         <img class="works__avatar" src="img/doctors/osimxon-axrorxojaev-560.webp" width="44" height="44" loading="lazy" decoding="async" alt="">
@@ -1262,7 +1294,7 @@
     </footer>
   </dialog>
 
-  <script src="i18n.js?v=24" defer></script>
+  <script src="i18n.js?v=25" defer></script>
   <script src="script.js?v=19" defer></script>
 </body>
 </html>
