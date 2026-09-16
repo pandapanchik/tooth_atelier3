@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tooth-atelier3.vercel.app/sitemap.xml

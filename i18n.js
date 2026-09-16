@@ -6,8 +6,8 @@
 (() => {
   const DICT = {
     ru: {
-      'meta.title': 'Tooth Atelier · Стоматологическое ателье',
-      'meta.desc': 'Tooth Atelier: создаём вашу улыбку с любовью. Имплантация, эстетическая стоматология, ортодонтия, 3D-томография, особые программы для детей и женщин.',
+      'meta.title': 'Tooth Atelier — стоматологическая клиника в Ташкенте',
+      'meta.desc': 'Tooth Atelier — стоматологическая клиника в Ташкенте. Имплантация, брекеты, виниры, коронки, лечение зубов и 3D-томография. Бережно и без спешки. Тел: +998 99 990 00 06.',
       'skip': 'Перейти к основному содержанию',
       'brand.home': 'Tooth Atelier, главная страница',
       'brand.top': 'Tooth Atelier, наверх страницы',
@@ -229,8 +229,8 @@
     },
 
     en: {
-      'meta.title': 'Tooth Atelier · Dental Atelier',
-      'meta.desc': 'Tooth Atelier: we craft your smile with love. Implants, aesthetic dentistry, orthodontics, 3D CT scans and dedicated programs for children and women.',
+      'meta.title': 'Tooth Atelier — Dental Clinic in Tashkent',
+      'meta.desc': 'Tooth Atelier is a dental clinic in Tashkent. Implants, braces, veneers, crowns, dental treatment and 3D CT scans. Gentle and unhurried care. Tel: +998 99 990 00 06.',
       'skip': 'Skip to main content',
       'brand.home': 'Tooth Atelier, home',
       'brand.top': 'Tooth Atelier, back to top',
@@ -458,6 +458,9 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const metaDesc = document.querySelector('meta[name="description"]');
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  const ogLocale = document.querySelector('meta[property="og:locale"]');
+  const OG_LOCALES = { uz: 'uz_UZ', ru: 'ru_RU', en: 'en_US' };
   const textEls = [...document.querySelectorAll('[data-i18n]')];
   const attrEls = [...document.querySelectorAll('[data-i18n-attr]')];
   const switchers = [...document.querySelectorAll('[data-lang-switch]')];
@@ -490,6 +493,8 @@
     root.lang = lang;
     document.title = t('meta.title');
     if (metaDesc) metaDesc.content = t('meta.desc');
+    if (ogTitle) ogTitle.content = t('meta.title');
+    if (ogLocale) ogLocale.content = OG_LOCALES[lang];
 
     textEls.forEach((el) => { el.innerHTML = t(el.dataset.i18n); });
     attrEls.forEach((el) => {
@@ -556,4 +561,12 @@
     try { initial = localStorage.getItem(STORAGE_KEY); } catch (e) { initial = null; }
   }
   if (LANGS.includes(initial) && initial !== 'uz') apply(initial);
+
+  // SEO: canonical faqat havoladagi ?lang ga qarab (saqlangan tanlov emas), hreflang bilan mos
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  const canonical = document.createElement('link');
+  canonical.rel = 'canonical';
+  const base = document.querySelector('link[hreflang="x-default"]')?.href || `${window.location.origin}/`;
+  canonical.href = base + (urlLang === 'ru' || urlLang === 'en' ? `?lang=${urlLang}` : '');
+  document.head.appendChild(canonical);
 })();
