@@ -1185,7 +1185,8 @@ html:has(dialog[open]) { overflow: hidden; }
   -webkit-user-drag: none;
 }
 .case__media--pair,
-.case__media--trio {
+.case__media--trio,
+.case__media--quad {
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 6px;
@@ -1200,6 +1201,12 @@ html:has(dialog[open]) { overflow: hidden; }
   grid-template-rows: 2fr 1fr;
 }
 .case__media--trio > :first-child { grid-column: 1 / -1; }
+/* To'rtlik: tepada natija, pastda uchta kichik surat */
+.case__media--quad {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 2fr 1fr;
+}
+.case__media--quad > :first-child { grid-column: 1 / -1; }
 .case__half {
   position: relative;
   min-height: 0;
