@@ -1185,7 +1185,9 @@ html:has(dialog[open]) { overflow: hidden; }
   -webkit-user-drag: none;
 }
 .case__media--pair,
-.case__media--trio {
+.case__media--trio,
+.case__media--duo,
+.case__media--six {
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 6px;
@@ -1200,6 +1202,16 @@ html:has(dialog[open]) { overflow: hidden; }
   grid-template-rows: 2fr 1fr;
 }
 .case__media--trio > :first-child { grid-column: 1 / -1; }
+/* Duet: ikki tik surat yonma-yon (2:3) */
+.case__media--duo {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+/* Oltilik: tepada 3 ta "oldin", pastda 3 ta "keyin" (kvadrat) */
+.case__media--six {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
 .case__half {
   position: relative;
   min-height: 0;
