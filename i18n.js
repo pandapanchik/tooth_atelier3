@@ -159,6 +159,7 @@
       'works.b4': 'Замена старых пломб',
       'works.b4n': 'Композитная реставрация',
       'works.b5': 'Восстановление верхних жевательных зубов',
+      'works.d1': 'Профессиональная гигиена',
 
       'care.eyebrow': 'Особая забота',
       'care.title': 'Особые программы для самых <em>нежных пациентов</em>',
@@ -388,6 +389,7 @@
       'works.b4': 'Replacing old fillings',
       'works.b4n': 'Composite restoration',
       'works.b5': 'Restoring upper back teeth',
+      'works.d1': 'Professional hygiene',
 
       'care.eyebrow': 'Special care',
       'care.title': 'Dedicated programs for our <em>most delicate patients</em>',

@@ -1186,6 +1186,7 @@ html:has(dialog[open]) { overflow: hidden; }
 }
 .case__media--pair,
 .case__media--trio,
+.case__media--quad,
 .case__media--duo,
 .case__media--six {
   display: grid;
@@ -1202,6 +1203,10 @@ html:has(dialog[open]) { overflow: hidden; }
   grid-template-rows: 2fr 1fr;
 }
 .case__media--trio > :first-child { grid-column: 1 / -1; }
+/* To'rtlik: 2x2 panjara (hammasi 7:4) */
+.case__media--quad {
+  grid-template-columns: 1fr 1fr;
+}
 /* Duet: ikki tik surat yonma-yon (2:3) */
 .case__media--duo {
   grid-template-columns: 1fr 1fr;
